@@ -87,14 +87,17 @@ export function BoldHero({ role, company, orgs }: { role: string; company: strin
             initial={reduce ? false : { opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, delay: 0.25, ease }}
-            className="absolute bottom-0 left-1/2 z-[2] h-[78%] w-[min(92%,460px)] -translate-x-1/2 origin-bottom"
+            className="absolute bottom-0 left-1/2 z-[2] aspect-[800/766] w-[min(155vw,740px)] -translate-x-1/2 origin-bottom"
           >
-            <img
-              src="/images/profile-cutout.png"
-              alt="Portrait of Nikki Mamanduri"
-              fetchPriority="high"
-              className="size-full object-cover object-[50%_0%] [mask-image:linear-gradient(to_bottom,black_85%,transparent)]"
-            />
+            <picture>
+              <source srcSet="/images/nikki-cutout.webp" type="image/webp" />
+              <img
+                src="/images/nikki-cutout.png"
+                alt="Portrait of Nikki Mamanduri"
+                fetchPriority="high"
+                className="size-full object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_88%,transparent)]"
+              />
+            </picture>
           </motion.div>
 
           <motion.div style={{ y: badgeA }} className="absolute left-3 top-[52%] z-[3] sm:left-[8%]">
