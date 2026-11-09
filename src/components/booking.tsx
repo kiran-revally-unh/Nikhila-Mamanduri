@@ -7,12 +7,12 @@ import { ArrowLeft, CalendarPlus, Check, ChevronLeft, ChevronRight, Clock, Globe
 import { availability, profile, sessionTypes } from "@/content/profile";
 import { icsFor, slotsForDay, zonedDate } from "@/lib/slots";
 import { cn } from "@/lib/utils";
+import { CalEmbed } from "./cal-embed";
 
 type Step = "session" | "time" | "details" | "done";
 const WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 export function Booking({ initialSession }: { initialSession?: string }) {
-  const calLink = process.env.NEXT_PUBLIC_CAL_LINK;
   const [sessionId, setSessionId] = useState(
     sessionTypes.some((s) => s.id === initialSession) ? initialSession! : sessionTypes[0].id,
   );
@@ -22,16 +22,6 @@ export function Booking({ initialSession }: { initialSession?: string }) {
   const [sending, setSending] = useState(false);
   const session = sessionTypes.find((s) => s.id === sessionId)!;
   const visitorTz = useMemo(() => Intl.DateTimeFormat().resolvedOptions().timeZone, []);
-
-  if (calLink) {
-    return (
-      <iframe
-        title="Book a session"
-        src={`https://cal.com/${calLink}?embed=true&theme=auto`}
-        className="h-[720px] w-full rounded-2xl border border-border bg-surface"
-      />
-    );
-  }
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -122,7 +112,19 @@ export function Booking({ initialSession }: { initialSession?: string }) {
               </div>
             )}
 
-            {step === "time" && (
+            {step === "time" && session.calLink && (
+              <div>
+                <button type="button" onClick={() => setStep("session")} className="mb-3 flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+                  <ArrowLeft className="size-4" /> All sessions
+                </button>
+                <p className="mb-3 text-sm text-muted-foreground">
+                  Pick a time below — you&apos;ll get a confirmation email with a <b>Google Meet</b> link and a calendar invite.
+                </p>
+                <CalEmbed calLink={session.calLink} namespace={session.id} />
+              </div>
+            )}
+
+            {step === "time" && !session.calLink && (
               <TimePicker
                 minutes={session.minutes}
                 selected={slot}
@@ -140,6 +142,7 @@ export function Booking({ initialSession }: { initialSession?: string }) {
                   <ArrowLeft className="size-4" /> Change time
                 </button>
                 <h3 className="font-semibold">Your details</h3>
+                <p className="text-sm text-muted-foreground">Working sessions are confirmed personally — Nikki will reply by email to confirm the time and send a meeting link.</p>
                 <Field label="Name" name="name" required />
                 <Field label="Email" name="email" type="email" required />
                 <Field label="Company (optional)" name="company" />
@@ -149,7 +152,7 @@ export function Booking({ initialSession }: { initialSession?: string }) {
                 </label>
                 {error && <p className="text-sm text-red-500">{error}</p>}
                 <button disabled={sending} className="w-full rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground disabled:opacity-60">
-                  {sending ? "Booking…" : "Confirm booking"}
+                  {sending ? "Sending…" : "Send request"}
                 </button>
               </form>
             )}
@@ -159,11 +162,11 @@ export function Booking({ initialSession }: { initialSession?: string }) {
                 <span className="grid size-14 place-items-center rounded-full bg-emerald-500/15 text-emerald-500">
                   <Check className="size-7" />
                 </span>
-                <h3 className="mt-4 text-2xl font-semibold">You&apos;re booked!</h3>
+                <h3 className="mt-4 text-2xl font-semibold">Request sent!</h3>
                 <p className="mt-2 max-w-sm text-muted-foreground">
                   {session.title} on{" "}
-                  {slot.toLocaleString(undefined, { weekday: "long", day: "numeric", month: "long", hour: "numeric", minute: "2-digit" })}. A
-                  confirmation with the meeting link will reach your inbox.
+                  {slot.toLocaleString(undefined, { weekday: "long", day: "numeric", month: "long", hour: "numeric", minute: "2-digit" })}. Nikki will
+                  reply by email to confirm and share a meeting link.
                 </p>
                 <button onClick={downloadIcs} className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium hover:bg-muted">
                   <CalendarPlus className="size-4" /> Add to calendar
