@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { GeistMono } from "geist/font/mono";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { WhatsAppButton } from "@/components/whatsapp-button";
+import { ChatWidget } from "@/components/assistant/chat-widget";
 import { Ambient } from "@/components/ambient";
 import { SmoothScroll } from "@/components/scroll/smooth-scroll";
 import { ScrollProgress } from "@/components/scroll/scroll-progress";
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
-        <WhatsAppButton />
+        <ChatWidget />
       </body>
     </html>
   );
