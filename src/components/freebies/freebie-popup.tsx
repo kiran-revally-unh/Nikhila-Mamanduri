@@ -95,7 +95,7 @@ export function FreebiePopup() {
                   <br />
                   <i className="font-light text-[#f6b4a3]">guides</i>
                 </p>
-                <img src="/images/nikki-cutout.webp" alt="" className="absolute bottom-0 right-0 w-[62%] max-w-none sm:left-1/2 sm:right-auto sm:w-[120%] sm:-translate-x-1/2" />
+                <img src="/images/nikki-cutout.webp" alt="" className="absolute bottom-0 right-16 h-[92%] w-auto max-w-none sm:left-1/2 sm:right-auto sm:h-auto sm:w-[120%] sm:-translate-x-1/2" />
               </div>
 
               {/* Content side */}
