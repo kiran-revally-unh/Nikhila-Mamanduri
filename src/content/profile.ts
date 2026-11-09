@@ -1,18 +1,14 @@
 /**
  * Single source of truth for every page on the site.
  *
- * Verified from public sources (Nov 2026):
- *  - LinkedIn title: "Nikhila Mamanduri, MHA, CAPM - Medi-Weightloss®"
- *  - Medi-Weightloss Thousand Oaks staff page: "Nikhila Mamanduri — Office Staff" (+ photo)
- *  - ZoomInfo: Lead Admin Coordinator, Tufts Medicine (may be outdated)
- *  - Nikki's Setly digital card (setly.net/nikki, kiran-revally-unh/setly-site app/nikki):
- *    "Healthcare Operations Manager", Medi-Weightloss Thousand Oaks, contact details, manifesto
- *  - University of New Haven Charger Blog (Feb 24, 2023): "Nikhila Mamanduri ’24 MHA,
- *    director of community relations, SOHA"
+ * Sources (Nov 2026):
+ *  - LinkedIn profile (linkedin.com/in/nikki-mamanduri): headline, experience, education,
+ *    skills, licenses & certifications, projects, volunteering, languages.
+ *    The profile has no About section and no recommendations yet.
+ *  - Medi-Weightloss Thousand Oaks staff page and Nikki's Setly digital card (setly.net/nikki)
+ *  - University of New Haven Charger Blog (Feb 24, 2023)
  *
- * Anything marked `SAMPLE` is still placeholder copy: the full LinkedIn profile
- * (about, dates, skills, recommendations) is behind LinkedIn's login wall.
- * Fill it in from the LinkedIn "Save to PDF" export.
+ * Anything marked `SAMPLE` is still placeholder copy that LinkedIn does not cover.
  */
 
 export const profile = {
@@ -37,16 +33,16 @@ export const profile = {
   photo: "/images/profile-studio.jpg",
   photoAlt: "/images/profile.jpg",
   resumePdf: "", // e.g. "/Nikhila-Mamanduri-Resume.pdf"
-  // SAMPLE — written from public facts; replace with the LinkedIn "About" section
+  // Written from the LinkedIn experience and education sections (LinkedIn has no About section).
   about: [
-    "I'm Nikhila (Nikki) Mamanduri, a Healthcare Operations Manager. I earned my Master of Healthcare Administration at the University of New Haven and hold the Certified Associate in Project Management (CAPM) credential.",
-    "I've worked on the administrative side of healthcare at Tufts Medicine and today manage healthcare operations at Medi-Weightloss® in Thousand Oaks, California — building better systems so teams are stronger and every patient has a better experience. During my MHA I served as director of community relations for the University's Society of Healthcare Administration (SOHA), connecting students with alumni, faculty and industry leaders.",
+    "I'm Nikhila (Nikki) Mamanduri, a healthcare operations leader focused on AI-enabled operations, workflow transformation and scalable care delivery. I hold a CAHME-accredited Master of Healthcare Administration from the University of New Haven, a B.Tech in Biotechnology from Lovely Professional University, and PMI's Certified Associate in Project Management (CAPM).",
+    "Today I lead the launch and stabilization of a physician-supervised weight-management clinic for Medi-Weightloss® in the Los Angeles area — mapping patient journeys, writing SOPs and building the dashboards that connect patient access, clinical care, GLP-1 workflows and growth. Before that I ran administrative operations at Tufts Medicine and U.S. Renal Care, and started my career as a Product Executive at Relisys Medical Devices in Hyderabad.",
   ],
   stats: [
-    { value: "MHA", label: "Master of Healthcare Administration" },
+    { value: "6+ yrs", label: "Healthcare experience" },
+    { value: "MHA", label: "University of New Haven, 3.79 GPA" },
     { value: "CAPM", label: "Project Management Institute" },
-    { value: "’24", label: "University of New Haven" },
-    { value: "2", label: "Healthcare organizations" },
+    { value: "20%", label: "Fewer claim denials at Tufts Medicine" },
   ],
   values: [
     { title: "Patient-first", text: "Every process should make care easier for patients and staff." },
@@ -67,30 +63,74 @@ export type Experience = {
   skills: string[];
 };
 
-// Roles verified from public sources; dates and highlights are SAMPLE until the LinkedIn export is added.
+// From LinkedIn (plus the SOHA role, from the Charger Blog).
 export const experience: Experience[] = [
   {
-    role: "Healthcare Operations Manager",
-    company: "Medi-Weightloss® Thousand Oaks",
-    start: "SAMPLE",
+    role: "Operations Manager",
+    company: "Medi-Weightloss®",
+    type: "Full-time",
+    start: "Mar 2026",
     end: "Present",
-    location: "Thousand Oaks, CA",
-    summary: "Runs day-to-day operations for a physician-supervised weight loss clinic — weight loss programs, GLP-1 medications, IV therapy and diabetes care.",
+    location: "Los Angeles area, CA",
+    summary:
+      "Leads the launch and stabilization of a physician-supervised weight-management clinic, building the operational structure that connects patient acquisition, access, clinical care, GLP-1 workflows, business growth and longitudinal patient support.",
     highlights: [
-      "SAMPLE — add operations wins from LinkedIn (e.g. scheduling, intake, patient experience).",
-      "SAMPLE — team leadership and process improvements.",
+      "Maps end-to-end patient journeys to find workflow gaps, unclear handoffs, delays and revenue leakage, and to standardize and automate.",
+      "Builds SOPs, escalation pathways and dashboards across patient access, scheduling, provider operations, medication coordination, inventory, compliance, revenue and retention.",
+      "Tracks KPIs including lead-response time, assessment attendance, enrollment conversion, cancellations, provider capacity and program retention.",
+      "Leads business development through referral relationships, community outreach and corporate-wellness partnerships.",
+      "Oversees insurance verification and prior-authorization workflows.",
+      "Uses AI-assisted tools and workflow automation for process mapping, SOPs, reporting and exception identification — with human review and privacy safeguards.",
     ],
-    skills: ["Healthcare operations", "Patient experience", "Team leadership"],
+    skills: ["Operational strategy", "SOP development", "KPI reporting", "Workflow automation"],
   },
   {
     role: "Lead Admin Coordinator",
     company: "Tufts Medicine",
-    start: "SAMPLE",
-    end: "SAMPLE",
-    location: "Massachusetts",
-    summary: "Administrative coordination within an academic health system.",
-    highlights: ["SAMPLE — add key achievements from LinkedIn."],
-    skills: ["Healthcare administration", "Coordination"],
+    type: "Full-time",
+    start: "Jul 2025",
+    end: "Feb 2026",
+    location: "Boston, MA",
+    summary:
+      "Directed end-to-end healthcare operations — patient scheduling, diagnostics coordination, follow-ups and workforce management — using Epic, Meditech, Kronos, Schedule Pro and AI-enabled tools.",
+    highlights: [
+      "Improved throughput by 25% and coverage by 20%, and cut scheduling conflicts by 15%.",
+      "Managed insurance verification, prior authorizations, CPT/ICD-10 coding and billing workflows, reducing claim denials by 20% and administrative bottlenecks by 28%.",
+      "Built resource-management dashboards with predictive analytics, reducing equipment shortages by 25%.",
+    ],
+    skills: ["Epic", "Meditech", "Kronos", "Revenue cycle management"],
+  },
+  {
+    role: "Administrative Assistant",
+    company: "U.S. Renal Care",
+    type: "Full-time",
+    start: "Jul 2024",
+    end: "Jul 2025",
+    location: "Dallas, TX",
+    summary:
+      "Ran clinical documentation, quality and compliance, and patient and staff scheduling for a dialysis clinic.",
+    highlights: [
+      "Reduced catheter usage from 24% to 10% by educating patients on percutaneous access placement.",
+      "Cut missed treatments and absences by 18.9% with Schedule Pro patient schedules and regular follow-ups.",
+      "Reduced employee turnover by 14% through staff scheduling and staffing.",
+      "Ran monthly medical-record and QM audits for 100% compliance on new admissions; kept survey-readiness and QAPI binders current.",
+    ],
+    skills: ["Practice management", "Quality & compliance", "Schedule Pro"],
+  },
+  {
+    role: "Graduate Assistant",
+    company: "University of New Haven",
+    type: "Part-time",
+    start: "Aug 2022",
+    end: "May 2024",
+    location: "New Haven, CT",
+    summary: "Supported the Department of Health Sciences faculty with research, curriculum and department operations.",
+    highlights: [
+      "Researched literature and data to bring current research into the course curriculum.",
+      "Developed assignments, reading materials, handbooks, flyers and social media posters.",
+      "Managed department inventory and organized department events.",
+    ],
+    skills: ["Research", "Curriculum development", "Coordination"],
   },
   {
     role: "Director of Community Relations",
@@ -107,31 +147,72 @@ export const experience: Experience[] = [
     ],
     skills: ["Event planning", "Communications", "Networking"],
   },
+  {
+    role: "Product Executive",
+    company: "Relisys Medical Devices Limited",
+    type: "Full-time",
+    start: "Mar 2020",
+    end: "Jul 2022",
+    location: "Hyderabad, India",
+    summary: "Market strategy, training and clinical-registry coordination for a cardiovascular medical-device maker.",
+    highlights: [
+      "Supervised and coordinated the PRISTINE Registry, a comparative in-stent restenosis study of Pristine Everolimus drug-eluting stents in India.",
+      "Designed and delivered nationwide training for business, clinical and administrative staff, vendors and physicians.",
+      "Produced consent forms, patient information booklets, brochures and social media content.",
+    ],
+    skills: ["Market strategy", "Clinical registries", "Training"],
+  },
 ];
 
 export const education = [
   {
     school: "University of New Haven",
-    degree: "Master of Healthcare Administration (MHA)",
-    start: "",
+    degree: "Master of Healthcare Administration (MHA), CAHME-accredited",
+    start: "2022",
     end: "2024",
-    note: "Director of community relations, Society of Healthcare Administration (SOHA).",
+    note: "GPA 3.79. Director of community relations, Society of Healthcare Administration (SOHA).",
   },
-  // SAMPLE — add the undergraduate degree from LinkedIn
+  {
+    school: "Lovely Professional University",
+    degree: "Bachelor of Technology (B.Tech), Biotechnology",
+    start: "2016",
+    end: "2020",
+    note: "",
+  },
 ];
 
-// SAMPLE — inferred from roles; replace with LinkedIn Skills
+// Grouped from the LinkedIn Skills section.
 export const skillGroups = [
-  { title: "Healthcare", items: ["Healthcare administration", "Patient experience", "Clinic operations", "Healthcare quality"] },
-  { title: "Project management", items: ["CAPM", "Planning & scheduling", "Stakeholder communication", "Process improvement"] },
-  { title: "People", items: ["Community relations", "Event planning", "Team coordination"] },
+  {
+    title: "Operations",
+    items: ["Operational strategy", "Workflow design", "Workflow optimization", "SOP development", "Operations process improvement", "Change management", "Performance management", "KPI reporting"],
+  },
+  {
+    title: "Healthcare",
+    items: ["Patient administration", "Medical operations", "Ambulatory care", "Revenue cycle management", "HIPAA", "OSHA compliance", "Digital health"],
+  },
+  {
+    title: "AI & technology",
+    items: ["AI for healthcare", "Process automation", "Workflow automation", "Operational analytics", "Healthcare IT", "Epic", "Meditech", "Kronos", "Tableau", "SQL"],
+  },
+  {
+    title: "Leadership",
+    items: ["Cross-functional team leadership", "Program management", "Software implementation management", "Innovation management", "Business strategy"],
+  },
 ];
 
 export const certifications = [
-  { name: "Certified Associate in Project Management (CAPM)®", issuer: "Project Management Institute", year: "", url: "" },
+  { name: "Certified Associate in Project Management (CAPM)®", issuer: "Project Management Institute", year: "2024", url: "" },
+  { name: "OSHA Course Certificate — Healthcare Compliance & Safety", issuer: "MP1 Solution", year: "2026", url: "" },
 ];
 
-export const languages = ["English"]; // SAMPLE — add other languages from LinkedIn
+export const languages = ["English", "Telugu", "Hindi", "Tamil (elementary)"];
+
+export const volunteering = [
+  { role: "Program Assistant", org: "American College of Healthcare Executives (ACHE) Congress", period: "Mar 2024" },
+  { role: "Cancer Genetics Administrative Volunteer", org: "Yale New Haven Health", period: "Jan 2024 — May 2024" },
+  { role: "Emergency Department Volunteer", org: "Yale New Haven Health", period: "Feb 2023 — Dec 2023" },
+];
 
 export type Service = {
   slug: string;
@@ -229,34 +310,58 @@ export const projects: Project[] = [
     source: { label: "Read the Charger Blog story", url: "https://www.newhaven.edu/news/blog/2023/mha-event.php" },
   },
   {
-    slug: "clinic-operations",
-    title: "Clinic Front-Office Operations",
+    slug: "tufts-scheduling-revenue",
+    title: "Scheduling & Revenue-Cycle Operations",
     category: "Operations",
-    year: "SAMPLE",
-    summary: "SAMPLE — a workflow or patient-experience improvement from Medi-Weightloss or Tufts Medicine.",
-    problem: "SAMPLE — what wasn't working?",
-    approach: "SAMPLE — what did you change?",
-    result: "SAMPLE — what improved?",
-    metrics: [{ value: "—", label: "Add a metric" }],
-    tools: ["Scheduling", "EHR"],
+    year: "2025",
+    summary: "Tightening scheduling, prior authorizations and billing workflows at Tufts Medicine.",
+    problem: "Scheduling conflicts, coverage gaps, claim denials and administrative bottlenecks were slowing patient throughput.",
+    approach:
+      "Coordinated scheduling, diagnostics, follow-ups and workforce management in Epic, Meditech, Kronos and Schedule Pro; managed insurance verification, prior authorizations, CPT/ICD-10 coding and billing with Excel and Google Sheets automation; and built resource dashboards with predictive analytics.",
+    result: "Throughput up 25%, coverage up 20%, scheduling conflicts down 15%, claim denials down 20% and equipment shortages down 25%.",
+    metrics: [
+      { value: "25%", label: "Higher throughput" },
+      { value: "20%", label: "Fewer claim denials" },
+    ],
+    tools: ["Epic", "Meditech", "Kronos", "Schedule Pro"],
     gradient: "from-sky-500 via-cyan-500 to-emerald-500",
   },
   {
-    slug: "mha-capstone",
-    title: "MHA Capstone Project",
-    category: "Research",
-    year: "2024",
-    summary: "SAMPLE — the capstone project from the University of New Haven MHA program.",
-    problem: "SAMPLE — the healthcare problem the capstone addressed.",
-    approach: "SAMPLE — method and partners.",
-    result: "SAMPLE — findings and recommendations.",
-    metrics: [{ value: "—", label: "Add a metric" }],
-    tools: ["Research", "Data analysis"],
+    slug: "gaylord-feasibility-study",
+    title: "Gaylord Outpatient Feasibility Study",
+    category: "Strategy",
+    year: "2023",
+    summary: "An MHA internship project assessing a new outpatient visit unit for Gaylord Specialty Healthcare.",
+    problem: "Gaylord needed to know whether adding an outpatient visit unit to an existing or new therapy site was practical and financially sound.",
+    approach:
+      "Led a three-person team through a feasibility assessment covering financial, operational and logistical factors: CPT and ICD-10 code trends, cost analysis, financial modelling and forecasting to project the right therapy site, plus a review of state and federal healthcare regulations.",
+    result: "A project plan and feasibility assessment with revenue and expenditure projections to support long-range planning.",
+    metrics: [
+      { value: "3", label: "Direct reports" },
+      { value: "5 mo", label: "Aug — Dec 2023" },
+    ],
+    tools: ["Financial analysis", "Forecasting", "Team leadership"],
     gradient: "from-amber-500 via-orange-500 to-rose-500",
+  },
+  {
+    slug: "renal-access-education",
+    title: "Vascular Access Patient Education",
+    category: "Patient care",
+    year: "2024",
+    summary: "Reducing catheter use at a U.S. Renal Care dialysis clinic through patient education.",
+    problem: "Too many dialysis patients relied on catheters rather than permanent access.",
+    approach: "Educated patients on why percutaneous access placement matters, alongside scheduling follow-ups to reduce missed treatments.",
+    result: "Catheter usage fell from 24% to 10%, and missed treatments and absences dropped 18.9%.",
+    metrics: [
+      { value: "24→10%", label: "Catheter usage" },
+      { value: "18.9%", label: "Fewer missed treatments" },
+    ],
+    tools: ["Patient education", "Schedule Pro"],
+    gradient: "from-teal-500 via-emerald-500 to-lime-500",
   },
 ];
 
-// SAMPLE — replace with LinkedIn Recommendations (shown with a "sample" note until then)
+// SAMPLE — LinkedIn has no recommendations yet (checked Nov 2026); shown with a "sample" note until real ones are added
 export const testimonialsAreSamples = true;
 export const testimonials = [
   { quote: "Paste a LinkedIn recommendation here. Keep it to two or three sentences.", name: "Colleague Name", role: "Title, Company" },

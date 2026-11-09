@@ -23,19 +23,19 @@ const serviceTones = [
 
 const journey: Chapter[] = [
   {
-    period: "Now",
-    title: "Healthcare Operations Manager",
-    org: "Medi-Weightloss® Thousand Oaks",
-    text: "Running day-to-day clinic operations across weight loss, GLP-1, IV therapy and diabetes care — building systems that make every visit smoother.",
+    period: "2026 — Now",
+    title: "Operations Manager",
+    org: "Medi-Weightloss® · Los Angeles area",
+    text: "Leading the launch of a physician-supervised weight-management clinic — patient journeys, SOPs, dashboards and GLP-1 workflows built for scale.",
     image: "/images/profile.jpg",
     gradient: "from-[#216f70] to-[#102a33]",
     label: "Operations, made human.",
   },
   {
-    period: "Before",
+    period: "2025 — 2026",
     title: "Lead Admin Coordinator",
-    org: "Tufts Medicine",
-    text: "Administrative coordination within Tufts Medicine, an academic health system.",
+    org: "Tufts Medicine · Boston",
+    text: "Ran scheduling, prior authorizations and billing workflows in Epic and Meditech — throughput up 25%, claim denials down 20%.",
     gradient: "from-[#102a33] to-[#216f70]",
     label: "Coordination at scale.",
   },

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Award, CalendarCheck, ContactRound, GraduationCap, Languages, MapPin } from "lucide-react";
-import { certifications, education, experience, languages, profile, skillGroups } from "@/content/profile";
+import { certifications, education, experience, languages, profile, skillGroups, volunteering } from "@/content/profile";
 import { Container, Tag } from "@/components/ui";
 import { CTA } from "@/components/cta";
 import { Reveal } from "@/components/reveal";
@@ -15,6 +15,7 @@ const toc = [
   { id: "experience", label: "Work experience" },
   { id: "education", label: "Education" },
   { id: "skills", label: "Skills & certifications" },
+  { id: "volunteering", label: "Volunteering" },
 ];
 
 export default function About() {
@@ -115,7 +116,7 @@ export default function About() {
 
           <section id="skills" className="mt-24 scroll-mt-24">
             <h2 className="text-4xl">Skills & certifications</h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-3">
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {skillGroups.map((g) => (
                 <div key={g.title}>
                   <p className="mb-3 font-semibold">{g.title}</p>
@@ -131,6 +132,21 @@ export default function About() {
                     <p className="font-semibold">{c.name}</p>
                     <p className="text-sm text-muted-foreground">{c.issuer}{c.year ? ` · ${c.year}` : ""}</p>
                   </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="volunteering" className="mt-24 scroll-mt-24">
+            <h2 className="text-4xl">Volunteering</h2>
+            <div className="mt-8 divide-y divide-border">
+              {volunteering.map((v) => (
+                <div key={v.role} className="grid gap-1 py-5 sm:grid-cols-[1fr_auto]">
+                  <div>
+                    <p className="font-semibold">{v.role}</p>
+                    <p className="text-sm text-muted-foreground">{v.org}</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground sm:text-right">{v.period}</p>
                 </div>
               ))}
             </div>
