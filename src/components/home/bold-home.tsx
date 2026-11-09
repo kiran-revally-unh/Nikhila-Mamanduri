@@ -50,7 +50,7 @@ export function BoldHero({ role, company, orgs }: { role: string; company: strin
           aria-hidden
           className="absolute inset-0 bg-[radial-gradient(120%_70%_at_50%_35%,#fdece6_0%,transparent_60%)] dark:bg-[radial-gradient(120%_70%_at_50%_35%,#1d3a44_0%,transparent_60%)]"
         />
-        <div className="relative mx-auto h-[min(760px,calc(100svh-20px))] min-h-[640px] max-w-6xl sm:h-[820px]">
+        <div className="relative mx-auto h-[560px] max-w-6xl sm:h-[820px]">
           {/* Name sits behind the portrait */}
           <motion.h1
             style={{ y: nameY, scale: nameScale }}
@@ -87,7 +87,7 @@ export function BoldHero({ role, company, orgs }: { role: string; company: strin
             initial={reduce ? false : { opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, delay: 0.25, ease }}
-            className="absolute bottom-0 left-1/2 z-[2] aspect-[800/766] w-[min(155vw,740px)] -translate-x-1/2 origin-bottom"
+            className="absolute bottom-0 left-1/2 z-[2] aspect-[800/766] w-[104vw] sm:w-[min(155vw,740px)] -translate-x-1/2 origin-bottom"
           >
             <picture>
               <source srcSet="/images/nikki-cutout.webp" type="image/webp" />
@@ -100,7 +100,7 @@ export function BoldHero({ role, company, orgs }: { role: string; company: strin
             </picture>
           </motion.div>
 
-          <motion.div style={{ y: badgeA }} className="absolute left-3 top-[52%] z-[3] sm:left-[8%]">
+          <motion.div style={{ y: badgeA }} className="absolute left-3 top-[68%] z-[3] sm:left-[8%] sm:top-[52%]">
             <motion.div
               initial={reduce ? false : { opacity: 0, scale: 0.8, x: -20 }}
               animate={{ opacity: 1, scale: 1, x: 0, ...float }}
@@ -111,7 +111,7 @@ export function BoldHero({ role, company, orgs }: { role: string; company: strin
               <p className="text-sm font-bold">MHA · CAPM</p>
             </motion.div>
           </motion.div>
-          <motion.div style={{ y: badgeB }} className="absolute right-3 top-[62%] z-[3] sm:right-[8%]">
+          <motion.div style={{ y: badgeB }} className="absolute right-3 top-[80%] z-[3] sm:right-[8%] sm:top-[62%]">
             <motion.div
               initial={reduce ? false : { opacity: 0, scale: 0.8, x: 20 }}
               animate={{ opacity: 1, scale: 1, x: 0, ...float }}
@@ -123,12 +123,13 @@ export function BoldHero({ role, company, orgs }: { role: string; company: strin
             </motion.div>
           </motion.div>
 
+        </div>
           <motion.div
             style={{ y: cardY }}
             initial={reduce ? false : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 1.1, ease }}
-            className={`absolute inset-x-3 bottom-4 z-[3] mx-auto max-w-md rounded-3xl p-4 sm:bottom-8 ${glass}`}
+            className={`relative z-[3] mx-3 -mt-12 mb-4 max-w-md rounded-3xl p-4 sm:absolute sm:inset-x-3 sm:bottom-8 sm:mx-auto sm:mb-0 sm:mt-0 ${glass}`}
           >
             <p className="flex items-center gap-2 text-xs font-semibold">
               <span className="relative flex size-2">
@@ -149,7 +150,6 @@ export function BoldHero({ role, company, orgs }: { role: string; company: strin
               </Link>
             </div>
           </motion.div>
-        </div>
       </section>
 
       {/* Employer strip */}
