@@ -1,39 +1,56 @@
 import Link from "next/link";
-import { ArrowUpRight, CalendarCheck, ContactRound, MapPin } from "lucide-react";
+import { ArrowUpRight, CalendarCheck, ContactRound, MapPin, Sparkles } from "lucide-react";
 import { experience, posts, profile, projects, services } from "@/content/profile";
-import { ButtonLink, Card, Container, SectionHeading } from "@/components/ui";
+import { ButtonLink, Container, SectionHeading } from "@/components/ui";
 import { Stats } from "@/components/stats";
-import { ProjectCard } from "@/components/project-card";
 import { TestimonialsMarquee } from "@/components/testimonials-marquee";
 import { CTA } from "@/components/cta";
 import { Reveal } from "@/components/reveal";
+import { Tilt } from "@/components/tilt";
+import { MarqueeStrip } from "@/components/marquee-strip";
 import { LinkedInIcon } from "@/components/icons";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   const current = experience[0];
+  const featured = projects[0];
+  const latest = posts[0];
   return (
     <>
-      {/* Hero follows Nikki's Setly digital card: serif name, coral credentials, teal manifesto. */}
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute -right-40 -top-40 size-[560px] rounded-full bg-accent-soft/80 dark:bg-accent-soft/40" />
-        <div className="pointer-events-none absolute -bottom-48 -left-40 size-[420px] rounded-full bg-coral-bright/10" />
-        <Container className="relative grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.3fr_1fr]">
+      {/* Hero — follows Nikki's Setly digital card: serif name, coral credentials, teal manifesto. */}
+      <section className="relative overflow-x-clip">
+        <Container className="relative grid items-center gap-14 pb-20 pt-14 sm:pt-20 lg:grid-cols-[1.3fr_1fr]">
           <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Medi-Weightloss® · Thousand Oaks
+            {latest?.externalUrl && (
+              <Link
+                href={`/blog/${latest.slug}`}
+                className="group inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 py-1 pl-1 pr-3 text-xs font-medium shadow-sm backdrop-blur transition hover:border-accent"
+              >
+                <span className="rounded-full bg-accent px-2 py-0.5 text-accent-foreground">Featured</span>
+                Charger Blog · University of New Haven
+                <ArrowUpRight className="size-3.5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            )}
+            <p className="mt-8 font-serif text-xl italic text-accent">{profile.kicker}</p>
+            <h1 className="mt-2 text-6xl leading-[0.92] text-balance sm:text-7xl lg:text-[6.5rem]">{profile.name}</h1>
+            <p className="mt-6 text-sm font-bold uppercase tracking-[0.3em] text-coral">{profile.credentials.replace(", ", " · ")}</p>
+            <p className="mt-4 text-2xl font-semibold">{profile.headline}</p>
+            <p className="mt-1 flex items-center gap-1.5 text-muted-foreground">
+              <MapPin className="size-4" /> {profile.location}
             </p>
-            <p className="mt-6 font-serif text-xl italic text-accent">{profile.kicker}</p>
-            <h1 className="mt-2 text-6xl leading-[0.95] text-balance sm:text-7xl lg:text-8xl">{profile.name}</h1>
-            <p className="mt-5 text-sm font-bold uppercase tracking-[0.3em] text-coral">{profile.credentials.replace(", ", " · ")}</p>
-            <p className="mt-5 text-2xl font-semibold">{profile.headline}</p>
-            <p className="mt-1 flex items-center gap-1.5 text-muted-foreground"><MapPin className="size-4" /> {profile.location}</p>
-            <hr className="my-8 max-w-lg border-border" />
+            <div className="hairline my-8 max-w-lg" />
             <p className="font-serif text-2xl italic leading-snug text-accent sm:text-3xl">
-              {profile.manifesto.map((line) => <span key={line} className="block">{line}</span>)}
+              {profile.manifesto.map((line) => (
+                <span key={line} className="block">{line}</span>
+              ))}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/book">Book a call</ButtonLink>
-              <a href="/contact.vcf" download="nikki-mamanduri.vcf" className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold transition hover:bg-muted">
+              <a
+                href="/contact.vcf"
+                download="nikki-mamanduri.vcf"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface/80 px-5 py-2.5 text-sm font-semibold backdrop-blur transition hover:bg-muted"
+              >
                 <ContactRound className="size-4" /> Save my contact
               </a>
             </div>
@@ -45,12 +62,22 @@ export default function Home() {
               </a>
             </div>
           </Reveal>
+
           <Reveal delay={0.15} className="relative mx-auto w-full max-w-sm">
-            <div className="overflow-hidden rounded-[2.5rem] shadow-2xl shadow-accent/20">
-              <img src={profile.photo} alt={`Portrait of ${profile.name}`} className="aspect-[4/5] w-full object-cover" />
-            </div>
-            <div className="absolute -bottom-6 -left-6 rounded-2xl border border-border bg-surface p-4 shadow-xl">
-              <p className="text-xs text-muted-foreground">Currently</p>
+            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-accent/25 via-transparent to-coral-bright/25 blur-2xl" />
+            <Tilt className="rounded-[2.5rem]">
+              <div className="overflow-hidden rounded-[2.5rem] border border-white/40 shadow-2xl shadow-accent/25">
+                <img src={profile.photo} alt={`Portrait of ${profile.name}`} className="aspect-[4/5] w-full object-cover" />
+              </div>
+            </Tilt>
+            <div className="absolute -bottom-7 -left-7 rounded-2xl border border-border bg-surface/90 p-4 shadow-xl backdrop-blur">
+              <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
+                  <span className="relative inline-flex size-2 rounded-full bg-success" />
+                </span>
+                Currently
+              </p>
               <p className="font-semibold">{current.role}</p>
               <p className="text-sm text-muted-foreground">{current.company}</p>
             </div>
@@ -58,74 +85,115 @@ export default function Home() {
         </Container>
       </section>
 
-      <Container><Stats /></Container>
+      <MarqueeStrip />
 
-      <Container className="mt-24">
-        <SectionHeading eyebrow="About" title="A little about me" />
-        <div className="grid gap-8 md:grid-cols-[1.4fr_1fr]">
-          <Reveal className="space-y-4 text-lg text-pretty text-muted-foreground">
+      <Container className="mt-20"><Stats /></Container>
+
+      {/* About teaser */}
+      <Container className="mt-28 grid items-center gap-12 lg:grid-cols-2">
+        <Reveal>
+          <SectionHeading eyebrow="About" title="Operations that feel human." />
+          <div className="space-y-4 text-lg text-pretty text-muted-foreground">
             {profile.about.map((p, i) => <p key={i}>{p}</p>)}
-            <Link href="/about" className="inline-flex items-center gap-1 font-medium text-accent">Read my story <ArrowUpRight className="size-4" /></Link>
-          </Reveal>
-          <div className="grid gap-3">
-            {profile.values.map((v, i) => (
-              <Reveal key={v.title} delay={i * 0.08}>
-                <Card className="p-5"><p className="font-semibold">{v.title}</p><p className="text-sm text-muted-foreground">{v.text}</p></Card>
-              </Reveal>
-            ))}
           </div>
-        </div>
-      </Container>
-
-      <Container className="mt-24">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading eyebrow="Services" title="How I can help" />
-          <Link href="/services" className="mb-10 text-sm font-medium text-accent">All services →</Link>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {services.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 0.08}>
-              <Card className="h-full transition hover:border-accent">
-                <span className="grid size-10 place-items-center rounded-xl bg-accent-soft font-semibold text-accent">0{i + 1}</span>
-                <h3 className="mt-4 text-lg font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{s.summary}</p>
-                <Link href={`/book?session=${s.sessionId}`} className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-                  <CalendarCheck className="size-4" /> Book this
-                </Link>
-              </Card>
+          <Link href="/about" className="mt-6 inline-flex items-center gap-1 font-semibold text-accent">
+            More about me <ArrowUpRight className="size-4" />
+          </Link>
+        </Reveal>
+        <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          {profile.values.map((v, i) => (
+            <Reveal key={v.title} delay={i * 0.08}>
+              <div className="rounded-3xl border border-border bg-surface/80 p-6 backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/5">
+                <p className="font-serif text-4xl text-coral-bright">0{i + 1}</p>
+                <p className="mt-2 text-lg font-semibold">{v.title}</p>
+                <p className="text-sm text-muted-foreground">{v.text}</p>
+              </div>
             </Reveal>
           ))}
         </div>
       </Container>
 
-      <Container className="mt-24">
+      {/* Featured project — large editorial card */}
+      <Container className="mt-28">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading eyebrow="Selected work" title="Featured projects" />
-          <Link href="/work" className="mb-10 text-sm font-medium text-accent">All projects →</Link>
+          <SectionHeading eyebrow="Selected work" title="Featured project" />
+          <Link href="/work" className="mb-10 text-sm font-semibold text-accent">All work →</Link>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {projects.slice(0, 3).map((p, i) => (
-            <Reveal key={p.slug} delay={i * 0.08}><ProjectCard project={p} /></Reveal>
+        <Reveal>
+          <Link href={`/work/${featured.slug}`} className="group block">
+            <Tilt className="rounded-[2rem]">
+              <div className="grid overflow-hidden rounded-[2rem] border border-border bg-surface lg:grid-cols-[1.4fr_1fr]">
+                <div className={cn("relative aspect-[16/10] overflow-hidden bg-gradient-to-br lg:aspect-auto lg:min-h-[420px]", featured.gradient)}>
+                  {featured.image && (
+                    <img src={featured.image} alt="" className="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-105" />
+                  )}
+                </div>
+                <div className="flex flex-col justify-between gap-8 p-8 sm:p-10">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{featured.category} · {featured.year}</p>
+                    <h3 className="mt-3 font-serif text-4xl leading-tight">{featured.title}</h3>
+                    <p className="mt-4 text-muted-foreground">{featured.summary}</p>
+                  </div>
+                  <div className="flex items-end justify-between gap-6">
+                    <div className="flex gap-8">
+                      {featured.metrics.map((m) => (
+                        <div key={m.label}>
+                          <p className="font-serif text-4xl text-accent">{m.value}</p>
+                          <p className="text-xs text-muted-foreground">{m.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <span className="grid size-12 shrink-0 place-items-center rounded-full bg-foreground text-background transition group-hover:rotate-45">
+                      <ArrowUpRight className="size-5" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Tilt>
+          </Link>
+        </Reveal>
+      </Container>
+
+      {/* Services */}
+      <Container className="mt-28">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading eyebrow="Services" title="How I can help" />
+          <Link href="/services" className="mb-10 text-sm font-semibold text-accent">All services →</Link>
+        </div>
+        <div className="grid gap-px overflow-hidden rounded-[2rem] border border-border bg-border md:grid-cols-3">
+          {services.map((s, i) => (
+            <Reveal key={s.slug} delay={i * 0.08} className="h-full">
+              <div className="group flex h-full flex-col bg-surface p-8 transition hover:bg-accent-soft/40">
+                <Sparkles className="size-5 text-coral-bright" />
+                <h3 className="mt-6 font-serif text-2xl">{s.title}</h3>
+                <p className="mt-2 flex-1 text-sm text-muted-foreground">{s.summary}</p>
+                <Link href={`/book?session=${s.sessionId}`} className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+                  <CalendarCheck className="size-4" /> Book this
+                  <ArrowUpRight className="size-3.5 opacity-0 transition group-hover:opacity-100" />
+                </Link>
+              </div>
+            </Reveal>
           ))}
         </div>
       </Container>
 
-      <section className="mt-24">
+      <section className="mt-28">
         <Container><SectionHeading eyebrow="Testimonials" title="What people say" align="center" /></Container>
         <TestimonialsMarquee />
       </section>
 
       {posts.length > 0 && (
-        <Container className="mt-24">
-          <SectionHeading eyebrow="Blog" title="Latest writing" />
-          <div className="grid gap-6 md:grid-cols-3">
+        <Container className="mt-28">
+          <SectionHeading eyebrow="Writing" title="Latest writing" />
+          <div className="divide-y divide-border border-y border-border">
             {posts.slice(0, 3).map((p) => (
-              <Link key={p.slug} href={`/blog/${p.slug}`} className="group">
-                <Card className="h-full transition group-hover:border-accent">
-                  <p className="text-xs text-muted-foreground">{new Date(p.date).toLocaleDateString(undefined, { dateStyle: "medium", timeZone: "UTC" })}</p>
-                  <h3 className="mt-2 font-semibold">{p.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{p.excerpt}</p>
-                </Card>
+              <Link key={p.slug} href={`/blog/${p.slug}`} className="group grid gap-2 py-7 sm:grid-cols-[180px_1fr_auto] sm:items-center sm:gap-8">
+                <p className="text-sm text-muted-foreground">{new Date(p.date).toLocaleDateString(undefined, { dateStyle: "medium", timeZone: "UTC" })}</p>
+                <div>
+                  <h3 className="font-serif text-2xl leading-snug transition group-hover:text-accent">{p.title}</h3>
+                  {p.publication && <p className="mt-1 text-sm text-muted-foreground">{p.publication}</p>}
+                </div>
+                <ArrowUpRight className="hidden size-6 text-muted-foreground transition group-hover:rotate-45 group-hover:text-accent sm:block" />
               </Link>
             ))}
           </div>

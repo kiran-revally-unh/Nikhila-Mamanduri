@@ -77,7 +77,7 @@ export function ButtonLink({
 }
 
 export function Card({ className, children }: { className?: string; children: React.ReactNode }) {
-  return <div className={cn("rounded-2xl border border-border bg-surface p-6", className)}>{children}</div>;
+  return <div className={cn("rounded-3xl border border-border bg-surface/80 p-6 backdrop-blur", className)}>{children}</div>;
 }
 
 export function Tag({ children }: { children: React.ReactNode }) {

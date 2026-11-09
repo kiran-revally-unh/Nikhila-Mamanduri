@@ -3,6 +3,7 @@ import { GeistMono } from "geist/font/mono";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { Ambient } from "@/components/ambient";
 import { themeScript } from "@/components/theme-toggle";
 import { profile } from "@/content/profile";
 import "@fontsource/dm-sans/400.css";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground">
           Skip to content
         </a>
+        <Ambient />
         <Navbar />
         <main id="main">{children}</main>
         <Footer />

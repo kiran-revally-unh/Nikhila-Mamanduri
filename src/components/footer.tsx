@@ -26,6 +26,7 @@ const columns = [
   {
     title: "More",
     links: [
+      { href: "/gallery", label: "Gallery" },
       { href: "/blog", label: "Blog" },
       { href: "/privacy", label: "Privacy" },
     ],
@@ -34,10 +35,11 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-border bg-surface">
+    <footer className="mt-24 border-t border-border bg-surface/70 backdrop-blur">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div className="space-y-4">
-          <p className="text-lg font-semibold">{profile.name}</p>
+          <p className="font-serif text-3xl">{profile.name}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-coral">{profile.credentials.replace(", ", " · ")}</p>
           <p className="max-w-xs text-sm text-muted-foreground">{profile.headline}</p>
           <Newsletter />
         </div>

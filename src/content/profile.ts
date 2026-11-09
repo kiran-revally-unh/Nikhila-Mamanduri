@@ -298,3 +298,10 @@ export const faqs = [
   { q: "Which timezone are slots in?", a: "Slots are shown in your own timezone automatically. Nikki is based in California (Pacific Time)." },
   { q: "Do you mentor MHA students?", a: "Yes — book a free mentoring chat for MHA, career or resume questions." },
 ];
+
+export const gallery = [
+  { src: "/images/profile-studio.jpg", alt: "Studio portrait of Nikki Mamanduri", caption: "Portrait" },
+  { src: "/images/soha-kickoff.jpg", alt: "University of New Haven MHA students at the SOHA spring kickoff event", caption: "SOHA Spring Semester Kickoff, University of New Haven (2023)" },
+  { src: "/images/nikki-card.png", alt: "Nikki Mamanduri's digital business card", caption: "Digital business card" },
+  { src: "/images/profile.jpg", alt: "Nikki Mamanduri at Medi-Weightloss Thousand Oaks", caption: "Medi-Weightloss® Thousand Oaks" },
+];
