@@ -49,6 +49,7 @@
   --color-coral: var(--coral);
   --color-coral-bright: var(--coral-bright);
   --color-success: var(--success);
+  --color-mint: #d8ede7;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --animate-marquee: marquee var(--duration, 40s) linear infinite;
   --animate-float: float 6s ease-in-out infinite;
@@ -64,7 +65,14 @@
 
 html { scroll-behavior: smooth; }
 
-h1, h2, .font-serif { font-family: "Newsreader", Georgia, serif; font-weight: 500; letter-spacing: -0.015em; }
+@layer base {
+  h1, h2, .font-serif { font-family: "Newsreader", Georgia, serif; font-weight: 500; letter-spacing: -0.015em; }
+}
+
+@utility font-display {
+  font-family: "Fraunces Variable", Georgia, serif;
+  letter-spacing: -0.02em;
+}
 
 button:not(:disabled), a, summary, [role="tab"] { cursor: pointer; }
 

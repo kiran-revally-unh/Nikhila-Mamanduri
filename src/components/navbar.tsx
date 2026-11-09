@@ -68,11 +68,8 @@ export function Navbar() {
               : "max-w-7xl border-transparent bg-transparent",
           )}
         >
-          <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight" aria-label={`${profile.name}, home`}>
-            <span className="grid size-9 place-items-center rounded-full bg-gradient-to-br from-accent to-[#102a33] font-serif text-sm font-semibold text-white shadow-md shadow-accent/30">
-              {profile.initials}
-            </span>
-            <span className="hidden whitespace-nowrap font-serif text-lg sm:inline">{profile.name}</span>
+          <Link href="/" className="font-display pl-1 text-xl font-semibold" aria-label={`${profile.name}, home`}>
+            Nikki<span className="text-coral-bright">.</span>
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-0.5 xl:flex">
@@ -105,18 +102,19 @@ export function Navbar() {
             <ThemeToggle />
             <Link
               href="/book"
-              className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition hover:opacity-90 sm:inline-flex"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition hover:opacity-90"
             >
-              <CalendarCheck className="size-4" /> Book a call
+              <CalendarCheck className="hidden size-4 sm:block" /> Book a call
             </Link>
             <button
               type="button"
-              className="flex h-10 items-center gap-2 rounded-full border border-border bg-surface/80 px-4 text-sm font-semibold backdrop-blur xl:hidden"
+              className="flex h-10 items-center gap-2 rounded-full border border-border bg-surface/80 px-3 text-sm font-semibold backdrop-blur sm:px-4 xl:hidden"
+              aria-label="Menu"
               onClick={() => setOpen(true)}
               aria-expanded={open}
               aria-controls="site-menu"
             >
-              <Menu className="size-4" /> Menu
+              <Menu className="size-4" /> <span className="hidden sm:inline">Menu</span>
             </button>
           </div>
         </div>
