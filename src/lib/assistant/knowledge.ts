@@ -74,7 +74,9 @@ Bookable sessions: ${sessionTypes.map((s) => `${s.title}, ${s.minutes} min, ${s.
 Recent LinkedIn posts:
 ${recent}
 
-Site pages: /about, /experience, /work, /services, /book, /blog, /gallery, /contact.`;
+Free guides (PDF, free with email, at /resources): for clinics — The Clinic Front-Desk Fix (25-point checklist), Prior Auth & Claim Denial Playbook, Patient Experience Audit Scorecard, Clinic SOP Starter Pack; for careers — From International Student to Healthcare Operations (roadmap), Healthcare Admin Resume & LinkedIn Kit. Point people to /resources when relevant.
+
+Site pages: /about, /experience, /work, /services, /book, /blog, /gallery, /resources, /contact.`;
 }
 
 // ---------------------------------------------------------------- Offline fallback
@@ -91,6 +93,9 @@ export function fallbackAnswer(raw: string): { text: string; cards: FallbackCard
   const q = raw.toLowerCase();
   const current = experience[0];
 
+  if (has(q, ["free guide", "guide", "checklist", "resource", "download", "template", "pdf", "playbook", "resume tip", "roadmap"])) {
+    return { text: "Nikki has 6 free guides: for clinics, the Front-Desk Fix checklist, a Prior Auth & Denial Playbook, a Patient Experience Scorecard and an SOP Starter Pack; for careers, an International Student roadmap and a Resume & LinkedIn Kit. Grab any of them at /resources", cards: [] };
+  }
   if (has(q, ["book", "call", "meet", "schedule", "appointment", "session", "consult", "mentor"])) {
     return { text: "Happy to set that up! Pick the session that fits — the intro call and mentoring chat are free.", cards: [{ tool: "showBookingOptions", input: {} }] };
   }

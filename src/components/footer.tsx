@@ -12,6 +12,7 @@ const links = [
   { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
   { href: "/blog", label: "Blog" },
+  { href: "/resources", label: "Free guides" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy", label: "Privacy" },

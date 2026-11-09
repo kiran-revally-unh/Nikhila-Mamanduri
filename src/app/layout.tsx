@@ -3,6 +3,7 @@ import { GeistMono } from "geist/font/mono";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ChatWidget } from "@/components/assistant/chat-widget";
+import { FreebiePopup } from "@/components/freebies/freebie-popup";
 import { Ambient } from "@/components/ambient";
 import { SmoothScroll } from "@/components/scroll/smooth-scroll";
 import { ScrollProgress } from "@/components/scroll/scroll-progress";
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <ChatWidget />
+        <FreebiePopup />
       </body>
     </html>
   );

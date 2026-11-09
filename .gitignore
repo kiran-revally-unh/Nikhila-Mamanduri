@@ -43,3 +43,7 @@ next-env.d.ts
 
 # python
 __pycache__/
+
+# freebie build scratch
+scripts/freebies/.tmp/
+scripts/freebies/__pycache__/

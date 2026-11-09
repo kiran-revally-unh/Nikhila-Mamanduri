@@ -24,7 +24,7 @@ export const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
-const menuItems = [...navItems, { href: "/skills", label: "Skills" }, { href: "/testimonials", label: "Testimonials" }];
+const menuItems = [...navItems, { href: "/resources", label: "Free guides" }, { href: "/skills", label: "Skills" }, { href: "/testimonials", label: "Testimonials" }];
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
