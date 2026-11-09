@@ -275,7 +275,7 @@ export function CareerLog({ items }: { items: { role: string; company: string; p
   const line = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [0, 1]);
   return (
     <div className="mx-auto max-w-3xl px-5 pt-24 sm:px-8 sm:pt-32">
-      <p className="font-mono text-xs text-accent">/ CHANGELOG</p>
+      <p className="font-mono text-xs text-accent">/ EXPERIENCE</p>
       <h2 className="mt-2 font-sans text-[32px] font-bold tracking-tight sm:text-5xl">Career log</h2>
       <div ref={ref} className="relative mt-8 pl-6">
         <div className="absolute bottom-6 left-[3px] top-1 w-px bg-border" />
@@ -297,7 +297,7 @@ export function CareerLog({ items }: { items: { role: string; company: string; p
               className="absolute -left-[26px] top-1 size-[9px] rounded-full bg-accent ring-4 ring-background"
             />
             <p className="font-mono text-[11px] text-muted-foreground">
-              v{items.length - i}.0 · {it.period}
+              {it.period}
             </p>
             <p className="mt-1 text-lg font-bold sm:text-xl">{it.role}</p>
             <p className="text-sm text-muted-foreground">{it.company}</p>
@@ -496,3 +496,177 @@ export function Wordmark() {
   );
 }
 
+
+// ---------------------------------------------------------------- Featured work (stacking cards)
+export type WorkCard = {
+  slug: string;
+  title: string;
+  category: string;
+  year: string;
+  summary: string;
+  metrics: { value: string; label: string }[];
+  image?: string;
+};
+
+const workTones = [
+  { card: "bg-[#102a33] text-white", chip: "bg-white/10 text-[#f0937e]", sub: "text-white/70", rule: "border-white/20" },
+  { card: "bg-[#216f70] text-white", chip: "bg-white/15 text-white", sub: "text-white/75", rule: "border-white/25" },
+  { card: "bg-[#e97860] text-white", chip: "bg-white/20 text-white", sub: "text-white/85", rule: "border-white/30" },
+  { card: "bg-[#d8ede7] text-[#102a33]", chip: "bg-[#102a33]/10 text-[#216f70]", sub: "text-[#102a33]/70", rule: "border-[#102a33]/20" },
+];
+
+function StackCard({ w, i, n, progress, reduce }: { w: WorkCard; i: number; n: number; progress: MotionValue<number>; reduce: boolean | null }) {
+  const tone = workTones[i % workTones.length];
+  const scale = useTransform(progress, [i / n, 1], reduce ? [1, 1] : [1, 1 - (n - 1 - i) * 0.05]);
+  const dim = useTransform(progress, [i / n, 1], reduce ? [0, 0] : [0, (n - 1 - i) * 0.12]);
+  return (
+    <div className="sticky h-[78svh] min-h-[520px] pt-2" style={{ top: `${76 + i * 16}px` }}>
+      <motion.div
+        style={{ scale }}
+        className={`relative flex h-[min(560px,70svh)] min-h-[460px] origin-top flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_-20px_50px_-30px_rgb(16_42_51/0.6)] sm:p-9 ${tone.card}`}
+      >
+        <div className="flex items-center justify-between font-mono text-[11px]">
+          <span className={`rounded-full px-3 py-1 ${tone.chip}`}>{w.category}</span>
+          <span className="opacity-70">
+            {String(i + 1).padStart(2, "0")} / {String(n).padStart(2, "0")} · {w.year}
+          </span>
+        </div>
+        <h3 className="font-display mt-6 text-[30px] font-normal leading-[1.05] sm:text-5xl">{w.title}</h3>
+        <p className={`mt-3 max-w-xl text-sm leading-relaxed sm:text-base ${tone.sub}`}>{w.summary}</p>
+        {w.image ? (
+          <img src={w.image} alt="" loading="lazy" className="mt-5 min-h-0 w-full flex-1 rounded-2xl object-cover" />
+        ) : (
+          <div className="mt-auto grid grid-cols-2 gap-3 pt-6">
+            {w.metrics.slice(0, 2).map((m) => (
+              <div key={m.label} className={`border-t pt-3 ${tone.rule}`}>
+                <p className="text-4xl font-black tracking-[-0.04em] sm:text-6xl">{m.value}</p>
+                <p className={`mt-1 text-xs ${tone.sub}`}>{m.label}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        <Link
+          href={`/work/${w.slug}`}
+          className="mt-5 inline-flex items-center gap-1 self-start rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[#102a33] transition hover:bg-[#fde047]"
+        >
+          Read the case study <ArrowUpRight className="size-4" />
+        </Link>
+        <motion.div style={{ opacity: dim }} className="pointer-events-none absolute inset-0 bg-black" />
+      </motion.div>
+    </div>
+  );
+}
+
+export function FeaturedWork({ items }: { items: WorkCard[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  return (
+    <section className="mx-auto max-w-4xl px-3.5 pt-24 sm:px-8 sm:pt-32">
+      <p className="px-1.5 font-mono text-xs text-coral">[ FEATURED WORK ]</p>
+      <h2 className="font-display mt-3 px-1.5 text-[38px] font-light leading-none sm:text-6xl">
+        Selected <i className="text-accent">case studies</i>
+      </h2>
+      <div ref={ref} className="mt-8">
+        {items.map((w, i) => (
+          <StackCard key={w.slug} w={w} i={i} n={items.length} progress={scrollYProgress} reduce={reduce} />
+        ))}
+      </div>
+      <Link href="/work" className="ml-1.5 inline-flex items-center gap-1 text-sm font-semibold text-accent">
+        All work <ArrowUpRight className="size-4" />
+      </Link>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------- Photo wall (parallax collage)
+export type WallPhoto = { image: string; href: string; title: string };
+
+function WallColumn({ photos, y, offset }: { photos: WallPhoto[]; y: MotionValue<number>; offset: string }) {
+  return (
+    <motion.div style={{ y }} className={`flex flex-col gap-2.5 sm:gap-4 ${offset}`}>
+      {photos.map((p, i) => (
+        <Link key={p.href + i} href={p.href} className="group relative block overflow-hidden rounded-2xl bg-muted sm:rounded-3xl" aria-label={p.title}>
+          <img
+            src={p.image}
+            alt=""
+            loading="lazy"
+            className={`w-full object-cover transition duration-700 group-hover:scale-105 ${["aspect-[3/4]", "aspect-square", "aspect-[4/5]"][i % 3]}`}
+          />
+          <span className="absolute inset-x-0 bottom-0 line-clamp-2 bg-gradient-to-t from-black/75 to-transparent p-2.5 pt-8 text-[11px] font-semibold leading-snug text-white opacity-0 transition group-hover:opacity-100 sm:text-sm">
+            {p.title}
+          </span>
+        </Link>
+      ))}
+    </motion.div>
+  );
+}
+
+export function PhotoWall({ photos }: { photos: WallPhoto[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const p = useSpring(scrollYProgress, { stiffness: 90, damping: 25, mass: 0.4 });
+  const a = useParallax(p, 40, -120, reduce);
+  const b = useParallax(p, 140, -260, reduce);
+  const c = useParallax(p, 0, -60, reduce);
+  // Repeat the set so every column runs past the bottom edge while it drifts.
+  const filled = [...photos, ...photos.slice(0, 6)];
+  const cols = [0, 1, 2].map((k) => filled.filter((_, i) => i % 3 === k));
+  return (
+    <section className="mt-24 overflow-hidden sm:mt-32">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-end justify-between gap-3 px-5 sm:px-8">
+        <div>
+          <p className="font-mono text-xs text-coral">[ PHOTO WALL ]</p>
+          <h2 className="font-display mt-3 text-[38px] font-light leading-none sm:text-6xl">
+            Moments <i className="text-accent">in photos</i>
+          </h2>
+        </div>
+        <Link href="/gallery" className="inline-flex items-center gap-1 text-sm font-semibold text-accent">
+          Full gallery <ArrowUpRight className="size-4" />
+        </Link>
+      </div>
+      <div ref={ref} className="mx-auto mt-8 grid max-h-[860px] max-w-5xl grid-cols-3 gap-2.5 overflow-hidden px-2.5 [mask-image:linear-gradient(to_bottom,black_80%,transparent)] sm:max-h-[1100px] sm:gap-4 sm:px-8">
+        <WallColumn photos={cols[0]} y={a} offset="" />
+        <WallColumn photos={cols[1]} y={b} offset="-mt-10" />
+        <WallColumn photos={cols[2]} y={c} offset="mt-6" />
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------- Save my contact
+export function SaveContact({ name, role, phone, email, cardUrl }: { name: string; role: string; phone: string; email: string; cardUrl: string }) {
+  const reduce = useReducedMotion();
+  return (
+    <div className="mx-auto mt-16 max-w-md px-3.5 [perspective:1200px] sm:mt-20">
+      <motion.div
+        initial={reduce ? false : { opacity: 0, rotateX: 35, y: 50 }}
+        whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+        viewport={{ once: true, margin: "-10% 0px" }}
+        transition={{ duration: 0.9, ease }}
+        className="flex items-center gap-4 rounded-[28px] border border-border bg-surface p-4 shadow-[0_24px_60px_-30px_rgb(16_42_51/0.45)] sm:p-5"
+      >
+        <a href={cardUrl} target="_blank" rel="noreferrer" className="shrink-0 rounded-2xl border border-border bg-white p-1.5" aria-label="Open the digital card">
+          <img src="/images/nikki-qr.png" alt="QR code for the digital card" className="size-24 sm:size-28" />
+        </a>
+        <div className="min-w-0">
+          <p className="font-mono text-[10px] tracking-wider text-coral">MEET AT AN EVENT?</p>
+          <p className="font-display mt-1 text-xl leading-tight">{name}</p>
+          <p className="text-xs text-muted-foreground">{role}</p>
+          <p className="mt-1 truncate text-xs text-muted-foreground">
+            {phone} · {email}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <a href="/contact.vcf" download className="rounded-full bg-[#102a33] px-4 py-2 text-xs font-bold text-white dark:bg-[#d8ede7] dark:text-[#102a33]">
+              Save to phone
+            </a>
+            <a href={cardUrl} target="_blank" rel="noreferrer" className="rounded-full border border-border px-4 py-2 text-xs font-bold">
+              Digital card ↗
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
