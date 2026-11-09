@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { X } from "lucide-react";
-import { gallery } from "@/content/profile";
+import Link from "next/link";
+import { ArrowUpRight, X } from "lucide-react";
+import type { GalleryItem } from "@/content/profile";
 
-export function GalleryGrid() {
+export function GalleryGrid({ items: gallery }: { items: GalleryItem[] }) {
   const [open, setOpen] = useState<number | null>(null);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -16,7 +17,7 @@ export function GalleryGrid() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [open, gallery.length]);
 
   return (
     <>
@@ -50,8 +51,15 @@ export function GalleryGrid() {
               <X className="size-5" />
             </button>
             <motion.figure initial={{ scale: 0.96 }} animate={{ scale: 1 }} className="max-h-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
-              <img src={gallery[open].src} alt={gallery[open].alt} className="max-h-[80vh] rounded-2xl object-contain" />
-              <figcaption className="mt-3 text-center text-sm text-white/80">{gallery[open].caption}</figcaption>
+              <img src={gallery[open].src} alt={gallery[open].alt} className="mx-auto max-h-[78vh] rounded-2xl object-contain" />
+              <figcaption className="mt-3 flex flex-wrap items-center justify-center gap-3 text-center text-sm text-white/80">
+                {gallery[open].caption}
+                {gallery[open].href && (
+                  <Link href={gallery[open].href!} className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1 font-semibold text-white hover:bg-white/25">
+                    View post <ArrowUpRight className="size-3.5" />
+                  </Link>
+                )}
+              </figcaption>
             </motion.figure>
           </motion.div>
         )}

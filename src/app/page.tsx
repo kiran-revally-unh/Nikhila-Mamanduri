@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, CalendarCheck, ContactRound, MapPin, Sparkles } from "lucide-react";
-import { experience, posts, profile, projects, services } from "@/content/profile";
+import { experience, postDate, posts, profile, projects, services } from "@/content/profile";
 import { ButtonLink, Container, SectionHeading } from "@/components/ui";
 import { Stats } from "@/components/stats";
 import { TestimonialsMarquee } from "@/components/testimonials-marquee";
@@ -76,7 +76,7 @@ const journey: Chapter[] = [
 export default function Home() {
   const current = experience[0];
   const featured = projects[0];
-  const latest = posts[0];
+  const latest = posts.find((p) => p.source !== "linkedin");
   return (
     <>
       {/* Hero — follows Nikki's Setly digital card: serif name, coral credentials, teal manifesto. */}
@@ -290,14 +290,21 @@ export default function Home() {
 
       {posts.length > 0 && (
         <Container className="mt-28">
-          <SectionHeading eyebrow="Writing" title="Latest writing" />
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading eyebrow="Writing & LinkedIn" title="Latest posts" />
+            <Link href="/blog" className="mb-10 text-sm font-semibold text-accent">All {posts.length} posts →</Link>
+          </div>
           <div className="divide-y divide-border border-y border-border">
-            {posts.slice(0, 3).map((p) => (
-              <Link key={p.slug} href={`/blog/${p.slug}`} className="group grid gap-2 py-7 sm:grid-cols-[180px_1fr_auto] sm:items-center sm:gap-8">
-                <p className="text-sm text-muted-foreground">{new Date(p.date).toLocaleDateString(undefined, { dateStyle: "medium", timeZone: "UTC" })}</p>
+            {posts.slice(0, 4).map((p) => (
+              <Link key={p.slug} href={`/blog/${p.slug}`} className="group grid gap-4 py-7 sm:grid-cols-[120px_1fr_auto] sm:items-center sm:gap-8">
+                {p.images?.[0] ? (
+                  <img src={p.images[0]} alt="" loading="lazy" className="aspect-square w-24 rounded-2xl border border-border object-cover sm:w-full" />
+                ) : (
+                  <span className="hidden sm:block" />
+                )}
                 <div>
                   <h3 className="font-serif text-2xl leading-snug transition group-hover:text-accent">{p.title}</h3>
-                  {p.publication && <p className="mt-1 text-sm text-muted-foreground">{p.publication}</p>}
+                  <p className="mt-1 text-sm text-muted-foreground">{postDate(p)}{p.publication ? ` · ${p.publication}` : ""}</p>
                 </div>
                 <ArrowUpRight className="hidden size-6 text-muted-foreground transition group-hover:rotate-45 group-hover:text-accent sm:block" />
               </Link>

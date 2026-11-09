@@ -11,6 +11,8 @@
  * Anything marked `SAMPLE` is still placeholder copy that LinkedIn does not cover.
  */
 
+import { linkedinPosts } from "./linkedin";
+
 export const profile = {
   name: "Nikki Mamanduri",
   legalName: "Nikhila Mamanduri",
@@ -378,9 +380,16 @@ export type Post = {
   body: string[];
   externalUrl?: string;
   publication?: string;
+  images?: string[];
+  source?: "linkedin";
+  /** false when the date is estimated (LinkedIn only shows "3mo", "2yr", …). */
+  exactDate?: boolean;
+  linkedinUrl?: string;
 };
 
-export const posts: Post[] = [
+const linkedinActivity = "https://www.linkedin.com/in/nikki-mamanduri/recent-activity/all/";
+
+const articlePosts: Post[] = [
   {
     slug: "soha-spring-kickoff",
     title: "Spring Semester Kickoff Event Fosters Community Among Master of Healthcare Administration Students",
@@ -397,6 +406,34 @@ export const posts: Post[] = [
   },
 ];
 
+/** Every post on the site: the Charger Blog article plus all of Nikki's LinkedIn posts, newest first. */
+export const posts: Post[] = [
+  ...articlePosts,
+  ...linkedinPosts.map(
+    (p): Post => ({
+      slug: p.slug,
+      title: p.title,
+      date: p.date,
+      excerpt: p.excerpt,
+      body: p.body,
+      images: p.images,
+      source: "linkedin",
+      publication: "LinkedIn",
+      exactDate: p.exactDate,
+      linkedinUrl: p.url || linkedinActivity,
+      externalUrl: p.article || undefined,
+    }),
+  ),
+].sort((a, b) => b.date.localeCompare(a.date));
+
+/** Date label: exact day when known, otherwise month and year. */
+export function postDate(p: Pick<Post, "date" | "exactDate">, style: "medium" | "long" = "medium") {
+  const d = new Date(p.date);
+  return p.exactDate === false
+    ? d.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })
+    : d.toLocaleDateString("en-US", { dateStyle: style, timeZone: "UTC" });
+}
+
 export const faqs = [
   { q: "How do I book a session?", a: "Pick a session on the Book page, choose a time that suits you, and you'll get a confirmation by email." },
   { q: "Can I save your contact?", a: "Yes — use “Save contact” on the Contact page to add Nikki to your phone, or open her digital card." },
@@ -404,9 +441,25 @@ export const faqs = [
   { q: "Do you mentor MHA students?", a: "Yes — book a free mentoring chat for MHA, career or resume questions." },
 ];
 
-export const gallery = [
+export type GalleryItem = { src: string; alt: string; caption: string; href?: string };
+
+const featuredGallery: GalleryItem[] = [
   { src: "/images/profile-studio.jpg", alt: "Studio portrait of Nikki Mamanduri", caption: "Portrait" },
   { src: "/images/soha-kickoff.jpg", alt: "University of New Haven MHA students at the SOHA spring kickoff event", caption: "SOHA Spring Semester Kickoff, University of New Haven (2023)" },
   { src: "/images/nikki-card.png", alt: "Nikki Mamanduri's digital business card", caption: "Digital business card" },
   { src: "/images/profile.jpg", alt: "Nikki Mamanduri at Medi-Weightloss Thousand Oaks", caption: "Medi-Weightloss® Thousand Oaks" },
 ];
+
+/** Photos from Nikki's LinkedIn posts, newest first, each linking to its post. */
+export const linkedinGallery: GalleryItem[] = posts
+  .filter((p) => p.source === "linkedin" && p.images?.length)
+  .flatMap((p) =>
+    p.images!.map((src, i) => ({
+      src,
+      alt: `Photo ${i + 1} from Nikki's LinkedIn post: ${p.title}`,
+      caption: `${p.title} · ${postDate(p)}`,
+      href: `/blog/${p.slug}`,
+    })),
+  );
+
+export const gallery: GalleryItem[] = [...featuredGallery, ...linkedinGallery];
