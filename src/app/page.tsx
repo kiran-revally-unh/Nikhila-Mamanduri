@@ -12,6 +12,7 @@ import { TextReveal } from "@/components/scroll/text-reveal";
 import { StickyReveal, type Chapter } from "@/components/scroll/sticky-reveal";
 import { ContainerScroll } from "@/components/scroll/container-scroll";
 import { CardsStack } from "@/components/scroll/cards-stack";
+import { ImpactRing, type Impact } from "@/components/scroll/impact-ring";
 import { LinkedInIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,22 @@ const serviceTones = [
   "bg-[#216f70] text-white",
   "bg-[#102a33] text-white",
   "bg-[#e97860] text-[#102a33]",
+];
+
+const serviceIcons = ["/images/3d/target.webp", "/images/3d/rocket.webp", "/images/3d/megaphone.webp"];
+
+const orgs = ["Medi-Weightloss®", "Tufts Medicine", "U.S. Renal Care", "Yale New Haven Health", "University of New Haven"];
+
+// Real results from Nikki's LinkedIn experience.
+const impacts: Impact[] = [
+  { value: "25%", label: "Higher patient throughput", org: "Tufts Medicine" },
+  { value: "20%", label: "Fewer claim denials", org: "Tufts Medicine" },
+  { value: "28%", label: "Fewer administrative bottlenecks", org: "Tufts Medicine" },
+  { value: "25%", label: "Fewer equipment shortages", org: "Tufts Medicine" },
+  { value: "15%", label: "Fewer scheduling conflicts", org: "Tufts Medicine" },
+  { value: "24→10%", label: "Catheter usage reduced", org: "U.S. Renal Care" },
+  { value: "18.9%", label: "Fewer missed treatments", org: "U.S. Renal Care" },
+  { value: "14%", label: "Lower staff turnover", org: "U.S. Renal Care" },
 ];
 
 const journey: Chapter[] = [
@@ -108,6 +125,14 @@ export default function Home() {
                 <LinkedInIcon /> LinkedIn
               </a>
             </div>
+            <div className="mt-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">Experience at</p>
+              <ul className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 font-serif text-lg text-foreground/60 sm:text-xl">
+                {orgs.map((o) => (
+                  <li key={o} className="transition hover:text-foreground">{o}</li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
 
           <Reveal delay={0.15} className="relative mx-auto w-full max-w-md">
@@ -123,6 +148,8 @@ export default function Home() {
                   className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 drop-shadow-2xl"
                 />
               </div>
+              <img src="/images/3d/shield.webp" alt="" aria-hidden className="animate-float absolute -left-4 top-[6%] size-20 drop-shadow-2xl [animation-delay:0.8s] sm:size-24" />
+              <img src="/images/3d/chart.webp" alt="" aria-hidden className="animate-float absolute -right-3 bottom-[30%] size-20 drop-shadow-2xl [animation-delay:2.4s] sm:size-24" />
               <span className="animate-float absolute right-0 top-[22%] rounded-full border border-border bg-surface/90 px-4 py-2 text-sm font-bold tracking-[0.2em] text-coral shadow-lg backdrop-blur">
                 MHA
               </span>
@@ -168,6 +195,11 @@ export default function Home() {
       </Container>
 
       <Container className="mt-24"><Stats /></Container>
+
+      {/* Impact: 3D ring that turns on scroll */}
+      <section className="mt-16">
+        <ImpactRing items={impacts} />
+      </section>
 
       {/* Journey: sticky scroll reveal */}
       <Container className="mt-28">
@@ -232,8 +264,11 @@ export default function Home() {
                 serviceTones[i % serviceTones.length],
               )}
             >
-              <div className="flex flex-col justify-between">
-                <p className="font-serif text-7xl opacity-40">0{i + 1}</p>
+              <div className="flex flex-col justify-between gap-6">
+                <div className="flex items-start justify-between">
+                  <p className="font-serif text-7xl opacity-40">0{i + 1}</p>
+                  <img src={serviceIcons[i % serviceIcons.length]} alt="" aria-hidden className="size-24 drop-shadow-2xl sm:size-32" />
+                </div>
                 <Link
                   href={`/book?session=${s.sessionId}`}
                   className="inline-flex w-fit items-center gap-2 rounded-full bg-white/90 px-5 py-2.5 text-sm font-semibold text-[#102a33] transition hover:bg-white"

@@ -29,7 +29,7 @@ export function SectionHeading({
   return (
     <div className={cn("mb-10 space-y-3", align === "center" && "mx-auto max-w-2xl text-center")}>
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">{title}</h2>
+      <h2 className="text-4xl leading-[1.05] tracking-tight text-balance sm:text-5xl">{title}</h2>
       {description && <p className="text-pretty text-muted-foreground">{description}</p>}
     </div>
   );
@@ -41,7 +41,7 @@ export function PageHeader({ eyebrow, title, description }: { eyebrow: string; t
       <div className="bg-grid pointer-events-none absolute inset-0" />
       <Container className="relative py-16 sm:py-24">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">{title}</h1>
+        <h1 className="mt-4 max-w-3xl text-5xl leading-[1.02] tracking-tight text-balance sm:text-7xl">{title}</h1>
         {description && <p className="mt-4 max-w-2xl text-lg text-pretty text-muted-foreground">{description}</p>}
       </Container>
     </section>
@@ -77,7 +77,16 @@ export function ButtonLink({
 }
 
 export function Card({ className, children }: { className?: string; children: React.ReactNode }) {
-  return <div className={cn("rounded-3xl border border-border bg-surface/80 p-6 backdrop-blur", className)}>{children}</div>;
+  return (
+    <div
+      className={cn(
+        "rounded-[1.75rem] border border-border bg-surface/90 p-6 shadow-[0_20px_40px_-24px_rgb(16_42_51/0.3)] backdrop-blur transition hover:-translate-y-0.5 hover:shadow-[0_28px_50px_-24px_rgb(16_42_51/0.4)]",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
 }
 
 export function Tag({ children }: { children: React.ReactNode }) {

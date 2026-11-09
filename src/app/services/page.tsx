@@ -7,6 +7,8 @@ import { CTA } from "@/components/cta";
 
 export const metadata: Metadata = { title: "Services" };
 
+const serviceIcons = ["/images/3d/target.webp", "/images/3d/rocket.webp", "/images/3d/megaphone.webp"];
+
 const process = [
   { title: "Book a call", text: "Pick a free intro slot that suits you." },
   { title: "Plan together", text: "We agree on goals, scope and timeline." },
@@ -19,9 +21,15 @@ export default function ServicesPage() {
     <>
       <PageHeader eyebrow="Services" title="Ways we can work together" description="Pick what fits — every service starts with a free intro call." />
       <Container className="mt-16 grid gap-6 md:grid-cols-3">
-        {services.map((s) => (
-          <Card key={s.slug} className="flex flex-col">
-            <h2 className="text-xl font-semibold">{s.title}</h2>
+        {services.map((s, i) => (
+          <Card key={s.slug} className="group flex flex-col">
+            <img
+              src={serviceIcons[i % serviceIcons.length]}
+              alt=""
+              aria-hidden
+              className="-mt-2 mb-4 size-24 drop-shadow-xl transition duration-500 group-hover:-translate-y-1 group-hover:rotate-6"
+            />
+            <h2 className="text-2xl">{s.title}</h2>
             <p className="mt-2 text-sm text-muted-foreground">{s.summary}</p>
             <ul className="mt-5 flex-1 space-y-2 text-sm">
               {s.deliverables.map((d) => (
