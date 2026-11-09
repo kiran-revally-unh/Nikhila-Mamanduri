@@ -27,6 +27,24 @@ function useParallax(progress: MotionValue<number>, from: number, to: number, re
   return useTransform(progress, [0, 1], reduce ? [from, from] : [from, to]);
 }
 
+// ---------------------------------------------------------------- "See all" button
+/** Bold pill linking a homepage section to its full page (used at the top and bottom of sections). */
+export function SeeAll({ href, label, dark = false, block = false }: { href: string; label: string; dark?: boolean; block?: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={`group inline-flex shrink-0 items-center justify-between gap-3 rounded-full py-1.5 pl-5 pr-1.5 text-sm font-bold shadow-[0_12px_30px_-14px_rgb(16_42_51/0.55)] transition hover:-translate-y-0.5 ${
+        dark ? "bg-white text-[#102a33]" : "bg-[#102a33] text-white dark:bg-[#d8ede7] dark:text-[#102a33]"
+      } ${block ? "w-full sm:w-auto sm:min-w-[260px]" : ""}`}
+    >
+      {label}
+      <span className="grid size-9 place-items-center rounded-full bg-coral-bright text-white transition duration-300 group-hover:rotate-45">
+        <ArrowUpRight className="size-4" />
+      </span>
+    </Link>
+  );
+}
+
 // ---------------------------------------------------------------- Hero
 export function BoldHero({ role, company, orgs }: { role: string; company: string; orgs: string[] }) {
   const ref = useRef<HTMLElement>(null);
@@ -275,8 +293,13 @@ export function CareerLog({ items }: { items: { role: string; company: string; p
   const line = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [0, 1]);
   return (
     <div className="mx-auto max-w-3xl px-5 pt-24 sm:px-8 sm:pt-32">
-      <p className="font-mono text-xs text-accent">/ EXPERIENCE</p>
-      <h2 className="mt-2 font-sans text-[32px] font-bold tracking-tight sm:text-5xl">Career log</h2>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="font-mono text-xs text-accent">/ EXPERIENCE</p>
+          <h2 className="mt-2 font-sans text-[32px] font-bold tracking-tight sm:text-5xl">Career log</h2>
+        </div>
+        <SeeAll href="/experience" label="Full experience" />
+      </div>
       <div ref={ref} className="relative mt-8 pl-6">
         <div className="absolute bottom-6 left-[3px] top-1 w-px bg-border" />
         <motion.div style={{ scaleY: line }} className="absolute bottom-6 left-[3px] top-1 w-px origin-top bg-accent" />
@@ -304,9 +327,9 @@ export function CareerLog({ items }: { items: { role: string; company: string; p
           </motion.div>
         ))}
       </div>
-      <Link href="/experience" className="inline-flex items-center gap-1 text-sm font-semibold text-accent">
-        Full experience <ArrowUpRight className="size-4" />
-      </Link>
+      <div className="mt-2 flex justify-center">
+        <SeeAll href="/experience" label="See my full experience" block />
+      </div>
     </div>
   );
 }
@@ -395,9 +418,12 @@ export function FreshLinkedIn({ posts, profileUrl }: { posts: FreshPost[]; profi
           <br />
           <span className="text-[#0a66c2] dark:text-[#5aa7f0]">LinkedIn</span>
         </h2>
-        <a href={profileUrl} target="_blank" rel="noreferrer" className="rounded-full bg-[#0a66c2] px-4 py-2 text-xs font-bold text-white">
-          Follow ↗
-        </a>
+        <div className="flex flex-wrap gap-2">
+          <SeeAll href="/blog" label="All posts" />
+          <a href={profileUrl} target="_blank" rel="noreferrer" className="inline-flex items-center rounded-full bg-[#0a66c2] px-5 py-3 text-sm font-bold text-white">
+            Follow ↗
+          </a>
+        </div>
       </div>
       <div className="mt-6 grid gap-2.5 sm:grid-cols-2 sm:gap-4">
         <Link href={first.href} className="group overflow-hidden rounded-3xl bg-surface sm:row-span-2">
@@ -416,9 +442,9 @@ export function FreshLinkedIn({ posts, profileUrl }: { posts: FreshPost[]; profi
           ))}
         </div>
       </div>
-      <Link href="/blog" className="mt-5 inline-flex items-center gap-1 text-sm font-bold">
-        All posts <ArrowUpRight className="size-4" />
-      </Link>
+      <div className="mt-6 flex justify-center">
+        <SeeAll href="/blog" label="Read all posts" block />
+      </div>
     </motion.section>
   );
 }
@@ -563,18 +589,23 @@ export function FeaturedWork({ items }: { items: WorkCard[] }) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   return (
     <section className="mx-auto max-w-4xl px-3.5 pt-24 sm:px-8 sm:pt-32">
-      <p className="px-1.5 font-mono text-xs text-coral">[ FEATURED WORK ]</p>
-      <h2 className="font-display mt-3 px-1.5 text-[38px] font-light leading-none sm:text-6xl">
-        Selected <i className="text-accent">case studies</i>
-      </h2>
+      <div className="flex flex-wrap items-end justify-between gap-4 px-1.5">
+        <div>
+          <p className="font-mono text-xs text-coral">[ FEATURED WORK ]</p>
+          <h2 className="font-display mt-3 text-[38px] font-light leading-none sm:text-6xl">
+            Selected <i className="text-accent">case studies</i>
+          </h2>
+        </div>
+        <SeeAll href="/work" label="All work" />
+      </div>
       <div ref={ref} className="mt-8">
         {items.map((w, i) => (
           <StackCard key={w.slug} w={w} i={i} n={items.length} progress={scrollYProgress} reduce={reduce} />
         ))}
       </div>
-      <Link href="/work" className="ml-1.5 inline-flex items-center gap-1 text-sm font-semibold text-accent">
-        All work <ArrowUpRight className="size-4" />
-      </Link>
+      <div className="mt-2 flex justify-center px-1.5">
+        <SeeAll href="/work" label="See all case studies" block />
+      </div>
     </section>
   );
 }
@@ -622,14 +653,15 @@ export function PhotoWall({ photos }: { photos: WallPhoto[] }) {
             Moments <i className="text-accent">in photos</i>
           </h2>
         </div>
-        <Link href="/gallery" className="inline-flex items-center gap-1 text-sm font-semibold text-accent">
-          Full gallery <ArrowUpRight className="size-4" />
-        </Link>
+        <SeeAll href="/gallery" label="Full gallery" />
       </div>
       <div ref={ref} className="mx-auto mt-8 grid max-h-[860px] max-w-5xl grid-cols-3 gap-2.5 overflow-clip px-2.5 [mask-image:linear-gradient(to_bottom,black_80%,transparent)] sm:max-h-[1100px] sm:gap-4 sm:px-8">
         <WallColumn photos={cols[0]} y={a} offset="" />
         <WallColumn photos={cols[1]} y={b} offset="-mt-10" />
         <WallColumn photos={cols[2]} y={c} offset="mt-6" />
+      </div>
+      <div className="mt-8 flex justify-center px-5">
+        <SeeAll href="/gallery" label="Open the full gallery" block />
       </div>
     </section>
   );

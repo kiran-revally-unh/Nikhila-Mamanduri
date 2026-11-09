@@ -3,12 +3,12 @@
 // Homepage "Free guides" block: a dark card with a Clinics / Careers switch, a fan
 // of guide covers that spreads as you scroll (tap a cover to pick it), and the
 // email form for the chosen guide right beside it.
-import Link from "next/link";
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
-import { ArrowUpRight, Briefcase, Stethoscope } from "lucide-react";
+import { Briefcase, Stethoscope } from "lucide-react";
 import { audiences, freebieCover, freebies, type Audience, type Freebie } from "@/content/freebies";
 import { FreebieForm } from "./freebie-form";
+import { SeeAll } from "../home/bold-home";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -58,11 +58,14 @@ export function FreebieShowcase() {
           <p className="flex items-center gap-2 font-mono text-[11px] text-[#f0937e]">
             <span className="size-1.5 animate-pulse rounded-full bg-[#f0937e]" /> FREE · INSTANT DOWNLOAD
           </p>
-          <h2 className="font-display mt-3 text-[40px] font-light leading-[0.98] sm:text-6xl">
-            Free guides,
-            <br />
-            <i className="text-[#f6b4a3]">straight from the work.</i>
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <h2 className="font-display mt-3 text-[40px] font-light leading-[0.98] sm:text-6xl">
+              Free guides,
+              <br />
+              <i className="text-[#f6b4a3]">straight from the work.</i>
+            </h2>
+            <SeeAll href="/resources" label="All 6 guides" dark />
+          </div>
           <p className="mt-3 max-w-xl text-sm text-white/70 sm:text-base">
             Checklists, playbooks and templates from Nikki&apos;s work at Tufts Medicine, U.S. Renal Care and clinic operations. Pick yours.
           </p>
@@ -131,9 +134,9 @@ export function FreebieShowcase() {
             </div>
           </div>
 
-          <Link href="/resources" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[#6cc3b7]">
-            See all 6 free guides <ArrowUpRight className="size-4" />
-          </Link>
+          <div className="mt-8 flex justify-center">
+            <SeeAll href="/resources" label="See all 6 free guides" dark block />
+          </div>
         </div>
       </div>
     </section>
