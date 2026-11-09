@@ -4,6 +4,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { Ambient } from "@/components/ambient";
+import { SmoothScroll } from "@/components/scroll/smooth-scroll";
+import { ScrollProgress } from "@/components/scroll/scroll-progress";
 import { themeScript } from "@/components/theme-toggle";
 import { profile } from "@/content/profile";
 import "@fontsource/dm-sans/400.css";
@@ -52,6 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Ambient />
+        <SmoothScroll />
+        <ScrollProgress />
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
