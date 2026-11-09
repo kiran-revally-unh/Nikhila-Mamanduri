@@ -3,30 +3,35 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Palette from the UI UX Pro Max skill: calm cyan + health green (healthcare) */
-  --background: #f6fbfc;
+  /* Nikki's brand, from her Setly digital card (setly.net/nikki):
+     ink #102a33 · teal #216f70 · mint #d8ede7 · coral #e97860 · cream #f8f4ec */
+  --background: #f8f4ec;
   --surface: #ffffff;
-  --muted: #e8f1f6;
-  --foreground: #0b2530;
-  --muted-foreground: #475569;
-  --border: #d5e7ee;
-  --accent: #0e7490;
+  --muted: #eef5f2;
+  --foreground: #102a33;
+  --muted-foreground: #4a6169;
+  --border: #dde7e3;
+  --accent: #216f70;
   --accent-foreground: #ffffff;
-  --accent-soft: #e0f5f9;
-  --success: #059669;
+  --accent-soft: #d8ede7;
+  --coral: #c45a43; /* darkened coral for 4.5:1 small text */
+  --coral-bright: #e97860;
+  --success: #43a879;
 }
 
 .dark {
-  --background: #061418;
-  --surface: #0b1e24;
-  --muted: #12292f;
-  --foreground: #e6f4f7;
-  --muted-foreground: #9db4bc;
-  --border: #1d3a42;
-  --accent: #22d3ee;
-  --accent-foreground: #062026;
-  --accent-soft: #0e2f37;
-  --success: #34d399;
+  --background: #0a1c22;
+  --surface: #0f262d;
+  --muted: #15323a;
+  --foreground: #eef5f2;
+  --muted-foreground: #a3bcc2;
+  --border: #21414a;
+  --accent: #6cc3b7;
+  --accent-foreground: #0a1c22;
+  --accent-soft: #163a3f;
+  --coral: #f0937e;
+  --coral-bright: #e97860;
+  --success: #5fc596;
 }
 
 @theme inline {
@@ -39,7 +44,10 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
-  --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --color-coral: var(--coral);
+  --color-coral-bright: var(--coral-bright);
   --color-success: var(--success);
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --animate-marquee: marquee var(--duration, 40s) linear infinite;
@@ -50,6 +58,8 @@
 }
 
 html { scroll-behavior: smooth; }
+
+h1, h2, .font-serif { font-family: "Newsreader", Georgia, serif; font-weight: 500; letter-spacing: -0.015em; }
 
 button:not(:disabled), a, summary, [role="tab"] { cursor: pointer; }
 
@@ -62,7 +72,7 @@ button:not(:disabled), a, summary, [role="tab"] { cursor: pointer; }
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 

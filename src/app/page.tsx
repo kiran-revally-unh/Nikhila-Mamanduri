@@ -1,8 +1,7 @@
-// Hero inspired by 21st.dev "portfolio-hero" / "featured-project-hero".
 import Link from "next/link";
-import { ArrowUpRight, CalendarCheck, MapPin } from "lucide-react";
+import { ArrowUpRight, CalendarCheck, ContactRound, MapPin } from "lucide-react";
 import { experience, posts, profile, projects, services } from "@/content/profile";
-import { ButtonLink, Card, Container, Eyebrow, SectionHeading } from "@/components/ui";
+import { ButtonLink, Card, Container, SectionHeading } from "@/components/ui";
 import { Stats } from "@/components/stats";
 import { ProjectCard } from "@/components/project-card";
 import { TestimonialsMarquee } from "@/components/testimonials-marquee";
@@ -14,38 +13,46 @@ export default function Home() {
   const current = experience[0];
   return (
     <>
+      {/* Hero follows Nikki's Setly digital card: serif name, coral credentials, teal manifesto. */}
       <section className="relative overflow-hidden">
-        <div className="bg-grid pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-accent/15 blur-3xl" />
-        <Container className="relative grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[1.25fr_1fr]">
+        <div className="pointer-events-none absolute -right-40 -top-40 size-[560px] rounded-full bg-accent-soft/80 dark:bg-accent-soft/40" />
+        <div className="pointer-events-none absolute -bottom-48 -left-40 size-[420px] rounded-full bg-coral-bright/10" />
+        <Container className="relative grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.3fr_1fr]">
           <Reveal>
-            <Eyebrow>Available for new projects</Eyebrow>
-            <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
-              Hi, I&apos;m {profile.shortName}.
-              <span className="block bg-gradient-to-r from-accent to-emerald-600 bg-clip-text dark:to-emerald-400 text-transparent">{profile.headline}</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg text-pretty text-muted-foreground">{profile.tagline}</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Medi-Weightloss® · Thousand Oaks
+            </p>
+            <p className="mt-6 font-serif text-xl italic text-accent">{profile.kicker}</p>
+            <h1 className="mt-2 text-6xl leading-[0.95] text-balance sm:text-7xl lg:text-8xl">{profile.name}</h1>
+            <p className="mt-5 text-sm font-bold uppercase tracking-[0.3em] text-coral">{profile.credentials.replace(", ", " · ")}</p>
+            <p className="mt-5 text-2xl font-semibold">{profile.headline}</p>
+            <p className="mt-1 flex items-center gap-1.5 text-muted-foreground"><MapPin className="size-4" /> {profile.location}</p>
+            <hr className="my-8 max-w-lg border-border" />
+            <p className="font-serif text-2xl italic leading-snug text-accent sm:text-3xl">
+              {profile.manifesto.map((line) => <span key={line} className="block">{line}</span>)}
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink href="/book">Book a call</ButtonLink>
-              <ButtonLink href="/work" variant="secondary">View my work</ButtonLink>
+              <a href="/contact.vcf" download="nikki-mamanduri.vcf" className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold transition hover:bg-muted">
+                <ContactRound className="size-4" /> Save my contact
+              </a>
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">{profile.name}, {profile.credentials}</span>
-              <span className="flex items-center gap-1.5"><MapPin className="size-4" /> {profile.location}</span>
+            <div className="mt-6 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
+              <a href={`tel:${profile.phone}`} className="font-semibold text-foreground hover:text-accent">{profile.phoneDisplay}</a>
+              <a href={`mailto:${profile.email}`} className="hover:text-foreground">{profile.email}</a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-foreground">
                 <LinkedInIcon /> LinkedIn
               </a>
             </div>
           </Reveal>
           <Reveal delay={0.15} className="relative mx-auto w-full max-w-sm">
-            <div className="absolute -inset-4 rotate-3 rounded-[2rem] bg-gradient-to-br from-accent/40 to-emerald-500/40 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-border bg-surface p-2 shadow-2xl">
-              <img src={profile.photo} alt={profile.name} className="aspect-[4/5] w-full rounded-[1.6rem] object-cover" />
-              <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-black/40 p-4 text-white backdrop-blur-md">
-                <p className="text-xs opacity-75">Currently</p>
-                <p className="font-semibold">{current.role}</p>
-                <p className="text-sm opacity-80">{current.company}</p>
-              </div>
+            <div className="overflow-hidden rounded-[2.5rem] shadow-2xl shadow-accent/20">
+              <img src={profile.photo} alt={`Portrait of ${profile.name}`} className="aspect-[4/5] w-full object-cover" />
+            </div>
+            <div className="absolute -bottom-6 -left-6 rounded-2xl border border-border bg-surface p-4 shadow-xl">
+              <p className="text-xs text-muted-foreground">Currently</p>
+              <p className="font-semibold">{current.role}</p>
+              <p className="text-sm text-muted-foreground">{current.company}</p>
             </div>
           </Reveal>
         </Container>

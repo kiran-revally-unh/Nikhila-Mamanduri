@@ -5,8 +5,13 @@ import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { themeScript } from "@/components/theme-toggle";
 import { profile } from "@/content/profile";
-import "@fontsource/atkinson-hyperlegible/400.css";
-import "@fontsource/atkinson-hyperlegible/700.css";
+import "@fontsource/dm-sans/400.css";
+import "@fontsource/dm-sans/500.css";
+import "@fontsource/dm-sans/600.css";
+import "@fontsource/dm-sans/700.css";
+import "@fontsource/newsreader/400.css";
+import "@fontsource/newsreader/400-italic.css";
+import "@fontsource/newsreader/500.css";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -15,15 +20,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: `${profile.name} — ${profile.headline}`, template: `%s · ${profile.name}` },
   description: profile.tagline,
-  openGraph: { type: "website", title: profile.name, description: profile.tagline, url: siteUrl },
-  twitter: { card: "summary_large_image", title: profile.name, description: profile.tagline },
+  openGraph: { type: "website", title: profile.name, description: profile.tagline, url: siteUrl, images: [{ url: "/images/nikki-card.png", width: 2100, height: 1200 }] },
+  twitter: { card: "summary_large_image", title: profile.name, description: profile.tagline, images: ["/images/nikki-card.png"] },
 };
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: profile.name,
-  alternateName: profile.shortName,
+  name: profile.legalName,
+  alternateName: profile.name,
+  email: profile.email,
+  telephone: profile.phone,
   jobTitle: profile.headline,
   honorificSuffix: profile.credentials,
   alumniOf: { "@type": "CollegeOrUniversity", name: "University of New Haven" },

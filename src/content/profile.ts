@@ -5,6 +5,8 @@
  *  - LinkedIn title: "Nikhila Mamanduri, MHA, CAPM - Medi-Weightloss®"
  *  - Medi-Weightloss Thousand Oaks staff page: "Nikhila Mamanduri — Office Staff" (+ photo)
  *  - ZoomInfo: Lead Admin Coordinator, Tufts Medicine (may be outdated)
+ *  - Nikki's Setly digital card (setly.net/nikki, kiran-revally-unh/setly-site app/nikki):
+ *    "Healthcare Operations Manager", Medi-Weightloss Thousand Oaks, contact details, manifesto
  *  - University of New Haven Charger Blog (Feb 24, 2023): "Nikhila Mamanduri ’24 MHA,
  *    director of community relations, SOHA"
  *
@@ -14,24 +16,31 @@
  */
 
 export const profile = {
-  name: "Nikhila Mamanduri",
+  name: "Nikki Mamanduri",
+  legalName: "Nikhila Mamanduri",
   credentials: "MHA, CAPM",
   shortName: "Nikki",
   initials: "NM",
-  headline: "Healthcare Administration Professional",
+  headline: "Healthcare Operations Manager",
+  kicker: "Healthcare operations, made human.",
+  manifesto: ["Better systems. Stronger teams.", "Better patient experiences."],
   tagline:
-    "Healthcare administrator with a Master of Healthcare Administration and a CAPM certification — focused on smooth operations, great patient experiences and well-run projects.",
+    "Better systems create stronger teams — and a better experience for every patient. Healthcare Operations Manager at Medi-Weightloss® Thousand Oaks, with an MHA and CAPM.",
   location: "Thousand Oaks, California",
   timezone: "America/Los_Angeles",
-  email: "hello@example.com", // SAMPLE — replace with a real contact email
+  email: "nmamanduri@mediweightlossclinics.com",
+  phone: "+1-805-601-7931",
+  phoneDisplay: "805-601-7931",
+  digitalCard: "https://setly.net/nikki",
   linkedin: "https://www.linkedin.com/in/nikki-mamanduri",
-  whatsapp: "", // e.g. "1XXXXXXXXXX" — leave empty to hide the button
-  photo: "/images/profile.jpg",
+  whatsapp: "19139993300",
+  photo: "/images/profile-studio.jpg",
+  photoAlt: "/images/profile.jpg",
   resumePdf: "", // e.g. "/Nikhila-Mamanduri-Resume.pdf"
   // SAMPLE — written from public facts; replace with the LinkedIn "About" section
   about: [
-    "I'm Nikhila (Nikki) Mamanduri, a healthcare administration professional. I earned my Master of Healthcare Administration at the University of New Haven and hold the Certified Associate in Project Management (CAPM) credential.",
-    "I've worked on the administrative side of healthcare at Tufts Medicine and today support patients and providers at Medi-Weightloss in Thousand Oaks, California. During my MHA I served as director of community relations for the University's Society of Healthcare Administration (SOHA), connecting students with alumni, faculty and industry leaders.",
+    "I'm Nikhila (Nikki) Mamanduri, a Healthcare Operations Manager. I earned my Master of Healthcare Administration at the University of New Haven and hold the Certified Associate in Project Management (CAPM) credential.",
+    "I've worked on the administrative side of healthcare at Tufts Medicine and today manage healthcare operations at Medi-Weightloss® in Thousand Oaks, California — building better systems so teams are stronger and every patient has a better experience. During my MHA I served as director of community relations for the University's Society of Healthcare Administration (SOHA), connecting students with alumni, faculty and industry leaders.",
   ],
   stats: [
     { value: "MHA", label: "Master of Healthcare Administration" },
@@ -61,17 +70,17 @@ export type Experience = {
 // Roles verified from public sources; dates and highlights are SAMPLE until the LinkedIn export is added.
 export const experience: Experience[] = [
   {
-    role: "Office Staff",
-    company: "Medi-Weightloss®",
+    role: "Healthcare Operations Manager",
+    company: "Medi-Weightloss® Thousand Oaks",
     start: "SAMPLE",
     end: "Present",
     location: "Thousand Oaks, CA",
-    summary: "Front-office and administrative support for a physician-supervised weight loss clinic.",
+    summary: "Runs day-to-day operations for a physician-supervised weight loss clinic — weight loss programs, GLP-1 medications, IV therapy and diabetes care.",
     highlights: [
-      "SAMPLE — patient scheduling, intake and front-desk operations.",
-      "SAMPLE — supporting the clinical team across weight loss, GLP-1 and wellness programs.",
+      "SAMPLE — add operations wins from LinkedIn (e.g. scheduling, intake, patient experience).",
+      "SAMPLE — team leadership and process improvements.",
     ],
-    skills: ["Patient experience", "Clinic operations", "Scheduling"],
+    skills: ["Healthcare operations", "Patient experience", "Team leadership"],
   },
   {
     role: "Lead Admin Coordinator",
@@ -285,6 +294,7 @@ export const posts: Post[] = [
 
 export const faqs = [
   { q: "How do I book a session?", a: "Pick a session on the Book page, choose a time that suits you, and you'll get a confirmation by email." },
+  { q: "Can I save your contact?", a: "Yes — use “Save contact” on the Contact page to add Nikki to your phone, or open her digital card." },
   { q: "Which timezone are slots in?", a: "Slots are shown in your own timezone automatically. Nikki is based in California (Pacific Time)." },
   { q: "Do you mentor MHA students?", a: "Yes — book a free mentoring chat for MHA, career or resume questions." },
 ];
