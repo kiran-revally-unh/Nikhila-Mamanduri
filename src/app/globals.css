@@ -5,12 +5,12 @@
 :root {
   /* Nikki's brand, from her Setly digital card (setly.net/nikki):
      ink #102a33 · teal #216f70 · mint #d8ede7 · coral #e97860 · cream #f8f4ec */
-  --background: #f8f4ec;
+  --background: #ffffff;
   --surface: #ffffff;
-  --muted: #eef5f2;
+  --muted: #f2f6f5;
   --foreground: #102a33;
   --muted-foreground: #4a6169;
-  --border: #dde7e3;
+  --border: #e3e9e7;
   --accent: #216f70;
   --accent-foreground: #ffffff;
   --accent-soft: #d8ede7;
@@ -112,6 +112,10 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .dark .ambient-grain { mix-blend-mode: screen; opacity: 0.04; }
+/* Light theme is plain white: no tinted fields, spotlight or grain. */
+:root:not(.dark) .ambient-field,
+:root:not(.dark) .ambient-spotlight,
+:root:not(.dark) .ambient-grain { display: none; }
 
 .tilt {
   transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));

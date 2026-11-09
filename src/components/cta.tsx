@@ -1,5 +1,5 @@
 // Booking CTA (cta.gallery style): headline + actions on the left, a booking preview
-// card on the right, floating 3D icons around it.
+// card on the right
 import Link from "next/link";
 import { ArrowRight, CalendarCheck, Clock } from "lucide-react";
 import { sessionTypes } from "@/content/profile";
@@ -45,8 +45,6 @@ export function CTA({
           </div>
 
           <div className="relative mx-auto w-full max-w-sm">
-            <img src="/images/3d/rocket.webp" alt="" aria-hidden className="animate-float absolute -right-6 -top-14 z-10 size-28 drop-shadow-2xl sm:-right-10" />
-            <img src="/images/3d/thumb-up.webp" alt="" aria-hidden className="animate-float absolute -bottom-10 -left-8 z-10 size-24 drop-shadow-2xl [animation-delay:2s]" />
             <div className="rotate-[-2deg] rounded-3xl border border-white/10 bg-white/[0.07] p-5 shadow-2xl backdrop-blur-xl transition hover:rotate-0">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">Pick a session</p>
               <ul className="mt-4 space-y-2.5">

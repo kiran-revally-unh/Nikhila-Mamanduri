@@ -22,8 +22,6 @@ const serviceTones = [
   "bg-[#e97860] text-[#102a33]",
 ];
 
-const serviceIcons = ["/images/3d/target.webp", "/images/3d/rocket.webp", "/images/3d/megaphone.webp"];
-
 const orgs = ["Medi-Weightloss®", "Tufts Medicine", "U.S. Renal Care", "Yale New Haven Health", "University of New Haven"];
 
 // Real results from Nikki's LinkedIn experience.
@@ -148,8 +146,6 @@ export default function Home() {
                   className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 drop-shadow-2xl"
                 />
               </div>
-              <img src="/images/3d/shield.webp" alt="" aria-hidden className="animate-float absolute -left-4 top-[6%] size-20 drop-shadow-2xl [animation-delay:0.8s] sm:size-24" />
-              <img src="/images/3d/chart.webp" alt="" aria-hidden className="animate-float absolute -right-3 bottom-[30%] size-20 drop-shadow-2xl [animation-delay:2.4s] sm:size-24" />
               <span className="animate-float absolute right-0 top-[22%] rounded-full border border-border bg-surface/90 px-4 py-2 text-sm font-bold tracking-[0.2em] text-coral shadow-lg backdrop-blur">
                 MHA
               </span>
@@ -265,10 +261,7 @@ export default function Home() {
               )}
             >
               <div className="flex flex-col justify-between gap-6">
-                <div className="flex items-start justify-between">
-                  <p className="font-serif text-7xl opacity-40">0{i + 1}</p>
-                  <img src={serviceIcons[i % serviceIcons.length]} alt="" aria-hidden className="size-24 drop-shadow-2xl sm:size-32" />
-                </div>
+                <p className="font-serif text-7xl opacity-40">0{i + 1}</p>
                 <Link
                   href={`/book?session=${s.sessionId}`}
                   className="inline-flex w-fit items-center gap-2 rounded-full bg-white/90 px-5 py-2.5 text-sm font-semibold text-[#102a33] transition hover:bg-white"
