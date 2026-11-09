@@ -68,44 +68,39 @@ export function FreebiePopup() {
   return (
     <AnimatePresence>
       {open && (
-        <motion.div className="fixed inset-0 z-[70] flex items-end justify-center sm:items-center sm:p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div className="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.button aria-label="Close" onClick={later} className="absolute inset-0 bg-[#0a1c22]/55 backdrop-blur-sm" />
           <motion.div
             role="dialog"
             aria-modal="true"
             aria-label="Free guides from Nikki"
-            initial={reduce ? { opacity: 0 } : { y: "100%" }}
-            animate={reduce ? { opacity: 1 } : { y: 0 }}
-            exit={reduce ? { opacity: 0 } : { y: "100%" }}
-            transition={{ type: "spring", stiffness: 280, damping: 32 }}
-            className="relative max-h-[92svh] w-full overflow-y-auto rounded-t-[30px] bg-background shadow-2xl sm:max-w-3xl sm:rounded-[30px]"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.9, y: 24 }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.94, y: 16 }}
+            transition={{ type: "spring", stiffness: 300, damping: 28 }}
+            className="relative max-h-[88svh] w-full max-w-md overflow-y-auto rounded-[28px] bg-background shadow-2xl sm:max-w-3xl sm:rounded-[30px]"
             data-lenis-prevent
           >
-            <div className="mx-auto mt-2.5 h-1.5 w-12 rounded-full bg-border sm:hidden" />
-            <button onClick={later} aria-label="Close" className="absolute right-3 top-3 z-10 grid size-10 place-items-center rounded-full bg-background/80 backdrop-blur hover:bg-muted">
+            <button onClick={later} aria-label="Close" className="absolute right-3 top-3 z-10 grid size-10 place-items-center rounded-full bg-white/90 text-[#102a33] shadow backdrop-blur hover:bg-white">
               <X className="size-5" />
             </button>
 
             <div className="grid sm:grid-cols-[0.9fr_1.1fr]">
               {/* Visual side */}
-              <div className="relative hidden overflow-hidden bg-[#102a33] sm:block">
+              <div className="relative h-44 overflow-hidden bg-[#102a33] sm:h-auto">
                 <div aria-hidden className="absolute -right-16 -top-16 size-64 rounded-full bg-[radial-gradient(circle,#e97860_0%,transparent_70%)] opacity-60" />
                 <div aria-hidden className="absolute -bottom-20 -left-16 size-72 rounded-full bg-[radial-gradient(circle,#216f70_0%,transparent_70%)]" />
-                <p className="font-display relative p-7 text-[34px] font-extrabold leading-[0.9] text-white/90">
+                <p className="font-display relative p-5 text-[28px] font-extrabold leading-[0.9] text-white/90 sm:p-7 sm:text-[34px]">
                   Free
                   <br />
                   <i className="font-light text-[#f6b4a3]">guides</i>
                 </p>
-                <img src="/images/nikki-cutout.webp" alt="" className="absolute bottom-0 left-1/2 w-[120%] max-w-none -translate-x-1/2" />
+                <img src="/images/nikki-cutout.webp" alt="" className="absolute bottom-0 right-0 w-[62%] max-w-none sm:left-1/2 sm:right-auto sm:w-[120%] sm:-translate-x-1/2" />
               </div>
 
               {/* Content side */}
-              <div className="p-6 pt-4 sm:p-8">
-                <div className="flex items-center gap-3 sm:hidden">
-                  <img src="/images/profile.jpg" alt="" className="size-12 rounded-full object-cover" />
-                  <p className="font-mono text-[10px] tracking-wider text-coral">FREE GUIDES FROM NIKKI</p>
-                </div>
-                <p className="hidden font-mono text-[10px] tracking-wider text-coral sm:block">FREE GUIDES FROM NIKKI</p>
+              <div className="p-5 sm:p-8">
+                <p className="font-mono text-[10px] tracking-wider text-coral">FREE GUIDES FROM NIKKI</p>
 
                 <AnimatePresence mode="wait" initial={false}>
                   {!audience ? (
