@@ -215,7 +215,7 @@ export const projects: Project[] = [
       { value: "8 wk", label: "Mentoring program promoted" },
     ],
     tools: ["Event planning", "Communications", "Networking"],
-    gradient: "from-indigo-500 via-violet-500 to-fuchsia-500",
+    gradient: "from-cyan-600 via-teal-500 to-emerald-500",
     image: "/images/soha-kickoff.jpg",
     source: { label: "Read the Charger Blog story", url: "https://www.newhaven.edu/news/blog/2023/mha-event.php" },
   },

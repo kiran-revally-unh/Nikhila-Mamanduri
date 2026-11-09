@@ -13,7 +13,7 @@ export function CTA({
     <Container className="mt-24">
       <div className="relative overflow-hidden rounded-3xl bg-foreground px-6 py-16 text-center text-background sm:px-16">
         <div className="pointer-events-none absolute -left-20 -top-20 size-72 rounded-full bg-accent/40 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -right-16 size-72 rounded-full bg-fuchsia-500/30 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -right-16 size-72 rounded-full bg-emerald-500/30 blur-3xl" />
         <CalendarCheck className="relative mx-auto size-10 opacity-80" />
         <h2 className="relative mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-5xl">{title}</h2>
         <p className="relative mx-auto mt-4 max-w-xl text-pretty opacity-75">{text}</p>

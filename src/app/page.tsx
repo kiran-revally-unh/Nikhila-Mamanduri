@@ -22,7 +22,7 @@ export default function Home() {
             <Eyebrow>Available for new projects</Eyebrow>
             <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
               Hi, I&apos;m {profile.shortName}.
-              <span className="block bg-gradient-to-r from-accent to-fuchsia-500 bg-clip-text text-transparent">{profile.headline}</span>
+              <span className="block bg-gradient-to-r from-accent to-emerald-600 bg-clip-text dark:to-emerald-400 text-transparent">{profile.headline}</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-pretty text-muted-foreground">{profile.tagline}</p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -38,7 +38,7 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.15} className="relative mx-auto w-full max-w-sm">
-            <div className="absolute -inset-4 rotate-3 rounded-[2rem] bg-gradient-to-br from-accent/40 to-fuchsia-500/40 blur-2xl" />
+            <div className="absolute -inset-4 rotate-3 rounded-[2rem] bg-gradient-to-br from-accent/40 to-emerald-500/40 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-border bg-surface p-2 shadow-2xl">
               <img src={profile.photo} alt={profile.name} className="aspect-[4/5] w-full rounded-[1.6rem] object-cover" />
               <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-black/40 p-4 text-white backdrop-blur-md">

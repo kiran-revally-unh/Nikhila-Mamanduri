@@ -63,7 +63,7 @@ export function Timeline({ items }: { items: Experience[] }) {
       >
         <motion.div
           style={{ height: beamHeight, opacity: beamOpacity }}
-          className="absolute inset-x-0 top-0 w-0.5 rounded-full bg-gradient-to-b from-transparent via-accent to-fuchsia-500"
+          className="absolute inset-x-0 top-0 w-0.5 rounded-full bg-gradient-to-b from-transparent via-accent to-emerald-500"
         />
       </div>
     </div>
