@@ -1,6 +1,6 @@
 "use client";
 
-// Animated "Pick a session" card for the booking CTA: tilts into view, follows the
+// Animated "Pick a session" card for the booking CTA: rises into view (sitting straight), follows the
 // pointer in 3D with a soft glare, staggers its rows in, and a highlight glides
 // between sessions (auto-cycling until someone hovers). Reduced motion keeps the
 // same markup with everything held still.
@@ -52,11 +52,11 @@ export function SessionPicker({ sessions }: { sessions: Session[] }) {
   return (
     <motion.div ref={wrap} style={{ y: floatY }} className="relative mx-auto w-full max-w-sm [perspective:1100px]">
       <motion.div
-        initial={reduce ? false : { opacity: 0, rotateX: 28, rotateZ: -8, y: 60 }}
-        whileInView={{ opacity: 1, rotateX: 0, rotateZ: -2, y: 0 }}
+        initial={reduce ? false : { opacity: 0, rotateX: 20, y: 60 }}
+        whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
         viewport={{ once: true, margin: "-10% 0px" }}
         transition={{ duration: 1, ease }}
-        whileHover={reduce ? undefined : { rotateZ: 0, scale: 1.02 }}
+        whileHover={reduce ? undefined : { scale: 1.02 }}
       >
         <motion.div
           onPointerMove={onMove}
