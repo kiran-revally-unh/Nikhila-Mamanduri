@@ -8,6 +8,7 @@ import { availability, profile, sessionTypes } from "@/content/profile";
 import { icsFor, slotsForDay, zonedDate } from "@/lib/slots";
 import { cn } from "@/lib/utils";
 import { CalEmbed } from "./cal-embed";
+import { Honeypot, useSpamGuard } from "./spam-guard";
 
 type Step = "session" | "time" | "details" | "done";
 const WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
@@ -20,6 +21,7 @@ export function Booking({ initialSession, calLinks = {} }: { initialSession?: st
   const [slot, setSlot] = useState<Date | null>(null);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
+  const guard = useSpamGuard();
   const base = sessionTypes.find((s) => s.id === sessionId)!;
   const session = { ...base, calLink: calLinks[base.id] };
   const visitorTz = useMemo(() => Intl.DateTimeFormat().resolvedOptions().timeZone, []);
@@ -33,7 +35,7 @@ export function Booking({ initialSession, calLinks = {} }: { initialSession?: st
     const res = await fetch("/api/book", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ ...data, session: session.id, start: slot.toISOString(), timezone: visitorTz }),
+      body: JSON.stringify({ ...data, ...guard(e.currentTarget), session: session.id, start: slot.toISOString(), timezone: visitorTz }),
     }).catch(() => null);
     setSending(false);
     if (res?.ok) setStep("done");
@@ -138,7 +140,8 @@ export function Booking({ initialSession, calLinks = {} }: { initialSession?: st
             )}
 
             {step === "details" && (
-              <form onSubmit={submit} className="space-y-4">
+              <form onSubmit={submit} className="relative space-y-4">
+                <Honeypot />
                 <button type="button" onClick={() => setStep("time")} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
                   <ArrowLeft className="size-4" /> Change time
                 </button>

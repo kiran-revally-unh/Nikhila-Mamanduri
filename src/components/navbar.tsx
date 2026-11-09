@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, CalendarCheck, Menu, X } from "lucide-react";
-import { profile, projects } from "@/content/profile";
+import { profile, projects, testimonialsAreSamples } from "@/content/profile";
 import { ThemeToggle } from "./theme-toggle";
 import { LinkedInIcon } from "./icons";
 import { cn } from "@/lib/utils";
@@ -24,7 +24,13 @@ export const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
-const menuItems = [...navItems, { href: "/resources", label: "Free guides" }, { href: "/skills", label: "Skills" }, { href: "/testimonials", label: "Testimonials" }];
+const menuItems = [
+  ...navItems,
+  { href: "/resources", label: "Free guides" },
+  { href: "/skills", label: "Skills" },
+  // Testimonials appear once they are real (see testimonialsAreSamples in profile.ts).
+  ...(testimonialsAreSamples ? [] : [{ href: "/testimonials", label: "Testimonials" }]),
+];
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);

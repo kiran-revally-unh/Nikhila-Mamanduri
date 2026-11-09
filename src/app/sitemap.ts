@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { posts, projects } from "@/content/profile";
+import { posts, projects, testimonialsAreSamples } from "@/content/profile";
 
 const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "/about", "/experience", "/services", "/work", "/gallery", "/skills", "/book", "/testimonials", "/blog", "/resources", "/contact", "/privacy"];
+  const pages = ["", "/about", "/experience", "/services", "/work", "/gallery", "/skills", "/book", ...(testimonialsAreSamples ? [] : ["/testimonials"]), "/blog", "/resources", "/contact", "/privacy"];
   return [
     ...pages.map((p) => ({ url: `${base}${p}` })),
     ...projects.map((p) => ({ url: `${base}/work/${p.slug}` })),

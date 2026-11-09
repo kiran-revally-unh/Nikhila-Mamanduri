@@ -3,10 +3,15 @@
 import { NextResponse } from "next/server";
 import { audiences, freebieFile, freebies } from "@/content/freebies";
 import { isEmail, notify, str } from "@/lib/notify";
+import { checkSpam } from "@/lib/spam";
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
   const guide = freebies.find((f) => f.slug === body?.slug);
+  const spam = checkSpam(req, body, "freebie", { max: 8, text: str(body?.name, 80) });
+  // Bots get the file link too (it's public anyway) — they just don't reach Nikki's inbox.
+  if (!spam.ok && spam.silent && guide) return NextResponse.json({ ok: true, url: freebieFile(guide.slug), title: guide.title });
+  if (!spam.ok) return NextResponse.json({ error: spam.error }, { status: spam.status });
   if (!guide || !isEmail(body?.email)) {
     return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
   }

@@ -13,6 +13,7 @@ import {
   type UIMessage,
 } from "ai";
 import { buildInstructions, fallbackAnswer } from "@/lib/assistant/knowledge";
+import { underRateLimit } from "@/lib/spam";
 import { assistantTools, bookingOptions, caseStudy, contactCard, handoff } from "@/lib/assistant/tools";
 
 export const maxDuration = 30;
@@ -32,6 +33,9 @@ function lastUserText(messages: UIMessage[]) {
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export async function POST(req: Request) {
+  if (!underRateLimit(req, "chat", 40, 10 * 60 * 1000)) {
+    return new Response("Too many messages — please wait a few minutes.", { status: 429 });
+  }
   const { messages: all }: { messages: UIMessage[] } = await req.json();
   const messages = (all ?? []).slice(-MAX_MESSAGES);
 

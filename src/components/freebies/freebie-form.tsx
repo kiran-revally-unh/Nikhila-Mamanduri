@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, CalendarCheck, Check, Download, Loader2 } from "lucide-react";
 import { freebieCover, type Freebie } from "@/content/freebies";
 import { cn } from "@/lib/utils";
+import { Honeypot, useSpamGuard } from "../spam-guard";
 
 export function FreebieForm({
   guides,
@@ -25,6 +26,7 @@ export function FreebieForm({
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState("");
+  const guard = useSpamGuard();
   const [result, setResult] = useState<{ url: string; title: string } | null>(null);
 
   const submit = async (e: React.FormEvent) => {
@@ -39,7 +41,7 @@ export function FreebieForm({
       const res = await fetch("/api/freebie", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ slug, name, email, page: window.location.pathname }),
+        body: JSON.stringify({ slug, name, email, page: window.location.pathname, ...guard(e.currentTarget as HTMLFormElement) }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
@@ -96,7 +98,8 @@ export function FreebieForm({
           </div>
         </motion.div>
       ) : (
-        <motion.form key="form" onSubmit={submit} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
+        <motion.form key="form" onSubmit={submit} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative space-y-3">
+          <Honeypot />
           {guides.length > 1 && (
             <div role="radiogroup" aria-label="Choose a guide" className="grid gap-2">
               {guides.map((g, i) => {

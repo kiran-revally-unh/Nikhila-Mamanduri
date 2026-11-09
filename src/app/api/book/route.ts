@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 import { sessionTypes } from "@/content/profile";
 import { isEmail, notify, str } from "@/lib/notify";
+import { checkSpam } from "@/lib/spam";
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
+  const spam = checkSpam(req, body, "book", { max: 4, text: `${str(body?.notes)} ${str(body?.company)}` });
+  if (!spam.ok) return spam.silent ? NextResponse.json({ ok: true }) : NextResponse.json({ error: spam.error }, { status: spam.status });
   const session = sessionTypes.find((s) => s.id === body?.session);
   const start = new Date(str(body?.start, 40));
   if (!session || !isEmail(body?.email) || !str(body?.name) || isNaN(start.getTime()) || start.getTime() < Date.now()) {
