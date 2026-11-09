@@ -1,5 +1,5 @@
-// Site assistant endpoint. With an AI Gateway key (AI_GATEWAY_API_KEY, or the
-// Vercel OIDC token when deployed on Vercel) it answers with Claude and tools;
+// Site assistant endpoint. With an AI Gateway key (AI_GATEWAY_API_KEY) it answers
+// with Claude and tools;
 // without one it streams a built-in answer from the site content, so the chat
 // always works.
 import {
@@ -35,7 +35,9 @@ export async function POST(req: Request) {
   const { messages: all }: { messages: UIMessage[] } = await req.json();
   const messages = (all ?? []).slice(-MAX_MESSAGES);
 
-  if (process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN) {
+  // AI mode is opt-in: only an explicit AI_GATEWAY_API_KEY turns it on (the Vercel OIDC
+  // token is present on every Vercel deployment, so it must not switch AI on by itself).
+  if (process.env.AI_GATEWAY_API_KEY) {
     const result = streamText({
       model: MODEL,
       instructions: buildInstructions(),
