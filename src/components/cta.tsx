@@ -1,9 +1,10 @@
 // Booking CTA (cta.gallery style): headline + actions on the left, a booking preview
 // card on the right
 import Link from "next/link";
-import { ArrowRight, CalendarCheck, Clock } from "lucide-react";
+import { ArrowRight, CalendarCheck } from "lucide-react";
 import { sessionTypes } from "@/content/profile";
 import { Container } from "./ui";
+import { SessionPicker } from "./session-picker";
 
 export function CTA({
   title = "Let's build better systems together",
@@ -44,31 +45,7 @@ export function CTA({
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="rotate-[-2deg] rounded-3xl border border-white/10 bg-white/[0.07] p-5 shadow-2xl backdrop-blur-xl transition hover:rotate-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">Pick a session</p>
-              <ul className="mt-4 space-y-2.5">
-                {sessionTypes.map((s, i) => (
-                  <li key={s.id}>
-                    <Link
-                      href={`/book?session=${s.id}`}
-                      className={
-                        "flex items-center justify-between gap-3 rounded-2xl border px-4 py-3 transition " +
-                        (i === 0 ? "border-[#6cc3b7] bg-[#6cc3b7]/15" : "border-white/10 bg-white/[0.04] hover:border-white/30")
-                      }
-                    >
-                      <span>
-                        <span className="block font-semibold">{s.title}</span>
-                        <span className="flex items-center gap-1 text-xs text-white/60"><Clock className="size-3" /> {s.minutes} min</span>
-                      </span>
-                      <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold">{s.price}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 text-center text-xs text-white/50">Times shown in your timezone</p>
-            </div>
-          </div>
+          <SessionPicker sessions={sessionTypes} />
         </div>
       </div>
     </Container>
