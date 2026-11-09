@@ -12,7 +12,7 @@ import { CalEmbed } from "./cal-embed";
 type Step = "session" | "time" | "details" | "done";
 const WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
-export function Booking({ initialSession }: { initialSession?: string }) {
+export function Booking({ initialSession, calLinks = {} }: { initialSession?: string; calLinks?: Record<string, string | undefined> }) {
   const [sessionId, setSessionId] = useState(
     sessionTypes.some((s) => s.id === initialSession) ? initialSession! : sessionTypes[0].id,
   );
@@ -20,7 +20,8 @@ export function Booking({ initialSession }: { initialSession?: string }) {
   const [slot, setSlot] = useState<Date | null>(null);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
-  const session = sessionTypes.find((s) => s.id === sessionId)!;
+  const base = sessionTypes.find((s) => s.id === sessionId)!;
+  const session = { ...base, calLink: calLinks[base.id] };
   const visitorTz = useMemo(() => Intl.DateTimeFormat().resolvedOptions().timeZone, []);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {

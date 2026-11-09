@@ -261,12 +261,14 @@ export type SessionType = {
   price: string;
   /** Cal.com event (cal.com/<calLink>). Sessions without one are sent as requests. */
   calLink?: string;
+  /** Use calLink only if that Cal.com event exists (checked on the booking page); otherwise send a request. */
+  calOptional?: boolean;
 };
 
 export const sessionTypes: SessionType[] = [
   { id: "intro", title: "Intro call", minutes: 15, description: "Say hello and see if we're a fit.", price: "Free", calLink: "nikkimamanduri/15min" },
   { id: "consult", title: "Mentoring chat", minutes: 30, description: "Career questions, MHA advice or a resume review.", price: "Free", calLink: "nikkimamanduri/30min" },
-  { id: "deep-dive", title: "Working session", minutes: 60, description: "A focused session on your clinic or project.", price: "On request" },
+  { id: "deep-dive", title: "Working session", minutes: 60, description: "A focused session on your clinic or project.", price: "On request", calLink: "nikkimamanduri/60min", calOptional: true },
 ];
 
 /** Weekly availability in the profile timezone (24h clock). */
