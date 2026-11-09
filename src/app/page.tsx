@@ -6,7 +6,6 @@ import { Stats } from "@/components/stats";
 import { TestimonialsMarquee } from "@/components/testimonials-marquee";
 import { CTA } from "@/components/cta";
 import { Reveal } from "@/components/reveal";
-import { Tilt } from "@/components/tilt";
 import { MarqueeStrip } from "@/components/marquee-strip";
 import { ScrollExpansion } from "@/components/scroll/scroll-expansion";
 import { TextReveal } from "@/components/scroll/text-reveal";
@@ -111,14 +110,27 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.15} className="relative mx-auto w-full max-w-sm">
-            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-accent/25 via-transparent to-coral-bright/25 blur-2xl" />
-            <Tilt className="rounded-[2.5rem]">
-              <div className="overflow-hidden rounded-[2.5rem] border border-white/40 shadow-2xl shadow-accent/25">
-                <img src={profile.photo} alt={`Portrait of ${profile.name}`} className="aspect-[4/5] w-full object-cover" />
+          <Reveal delay={0.15} className="relative mx-auto w-full max-w-md">
+            {/* Cutout portrait on brand shapes */}
+            <div className="relative aspect-square">
+              <div className="absolute bottom-0 left-[4%] aspect-square w-[92%] rounded-full bg-gradient-to-br from-accent via-[#2b8584] to-[#102a33] shadow-2xl shadow-accent/30" />
+              <div className="absolute bottom-[3%] left-[7%] aspect-square w-[86%] rounded-full border border-white/25" />
+              <div className="absolute -right-2 top-[18%] size-24 rounded-full bg-coral-bright/30 blur-2xl" />
+              <div className="absolute bottom-0 left-[4%] h-full w-[92%] overflow-hidden rounded-b-full">
+                <img
+                  src="/images/profile-cutout.webp"
+                  alt={`Portrait of ${profile.name}`}
+                  className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 drop-shadow-2xl"
+                />
               </div>
-            </Tilt>
-            <div className="absolute -bottom-7 -left-7 rounded-2xl border border-border bg-surface/90 p-4 shadow-xl backdrop-blur">
+              <span className="animate-float absolute right-0 top-[22%] rounded-full border border-border bg-surface/90 px-4 py-2 text-sm font-bold tracking-[0.2em] text-coral shadow-lg backdrop-blur">
+                MHA
+              </span>
+              <span className="animate-float absolute left-0 top-[40%] rounded-full border border-border bg-surface/90 px-4 py-2 text-sm font-bold tracking-[0.2em] text-accent shadow-lg backdrop-blur [animation-delay:1.5s]">
+                CAPM
+              </span>
+            </div>
+            <div className="absolute -bottom-6 right-0 rounded-2xl border border-border bg-surface/90 p-4 shadow-xl backdrop-blur sm:-right-6">
               <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
