@@ -77,6 +77,8 @@ export default function Home() {
   const current = experience[0];
   const featured = projects[0];
   const latest = posts.find((p) => p.source !== "linkedin");
+  const newestPost = posts.find((p) => p.source === "linkedin" && p.images?.length);
+  const morePosts = posts.filter((p) => p !== newestPost);
   return (
     <>
       {/* Hero — follows Nikki's Setly digital card: serif name, coral credentials, teal manifesto. */}
@@ -168,7 +170,45 @@ export default function Home() {
         </Container>
       </section>
 
-      <MarqueeStrip />
+      {/* Latest from LinkedIn: newest post with a photo, right under the hero */}
+      {newestPost && (
+        <Container className="mt-20 sm:mt-28">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading eyebrow="Latest from LinkedIn" title="What I'm sharing now" />
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+              <LinkedInIcon /> Follow on LinkedIn
+            </a>
+          </div>
+          <Reveal>
+            <Link
+              href={`/blog/${newestPost.slug}`}
+              className="group grid overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-[0_24px_60px_-32px_rgb(16_42_51/0.35)] transition hover:-translate-y-1 md:grid-cols-[1.1fr_1fr]"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden bg-muted md:aspect-auto md:min-h-[380px]">
+                <img src={newestPost.images![0]} alt="" className="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-105" />
+                {newestPost.images!.length > 1 && (
+                  <span className="absolute bottom-3 right-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white">
+                    +{newestPost.images!.length - 1} photos
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col justify-center gap-4 p-6 sm:p-10">
+                <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-xs font-medium"><LinkedInIcon /> LinkedIn</span>
+                  {postDate(newestPost, "long")}
+                </p>
+                <h3 className="font-serif text-3xl leading-tight text-balance transition group-hover:text-accent sm:text-4xl">{newestPost.title}</h3>
+                <p className="line-clamp-4 text-muted-foreground">{newestPost.excerpt}</p>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent">
+                  Read the post <ArrowUpRight className="size-4 transition group-hover:rotate-45" />
+                </span>
+              </div>
+            </Link>
+          </Reveal>
+        </Container>
+      )}
+
+      <div className="mt-20 sm:mt-28"><MarqueeStrip /></div>
 
       {/* Scroll expansion: portrait grows to full-bleed, manifesto fades in */}
       <ScrollExpansion
@@ -295,7 +335,7 @@ export default function Home() {
             <Link href="/blog" className="mb-10 text-sm font-semibold text-accent">All {posts.length} posts →</Link>
           </div>
           <div className="divide-y divide-border border-y border-border">
-            {posts.slice(0, 4).map((p) => (
+            {morePosts.slice(0, 4).map((p) => (
               <Link key={p.slug} href={`/blog/${p.slug}`} className="group grid gap-4 py-7 sm:grid-cols-[120px_1fr_auto] sm:items-center sm:gap-8">
                 {p.images?.[0] ? (
                   <img src={p.images[0]} alt="" loading="lazy" className="aspect-square w-24 rounded-2xl border border-border object-cover sm:w-full" />
