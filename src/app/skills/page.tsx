@@ -30,7 +30,7 @@ export default function SkillsPage() {
               <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent"><Award className="size-6" /></span>
               <div className="flex-1">
                 <p className="font-semibold">{c.name}</p>
-                <p className="text-sm text-muted-foreground">{c.issuer} · {c.year}</p>
+                <p className="text-sm text-muted-foreground">{c.issuer}{c.year ? ` · ${c.year}` : ""}</p>
               </div>
               {c.url && (
                 <a href={c.url} target="_blank" rel="noreferrer" className="text-sm font-medium text-accent">

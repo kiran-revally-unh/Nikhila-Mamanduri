@@ -32,7 +32,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">{p.title}</h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{p.summary}</p>
         <div className={cn("relative mt-10 aspect-[21/9] overflow-hidden rounded-3xl bg-gradient-to-br", p.gradient)}>
-          <div className="bg-grid absolute inset-0 opacity-40" />
+          {p.image ? (
+            <img src={p.image} alt={p.title} className="absolute inset-0 size-full object-cover" />
+          ) : (
+            <div className="bg-grid absolute inset-0 opacity-40" />
+          )}
         </div>
       </Container>
       <Container className="mt-12 grid gap-10 lg:grid-cols-[1fr_280px]">
@@ -61,6 +65,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <p className="mb-2 text-sm font-semibold">Tools</p>
             <div className="flex flex-wrap gap-2">{p.tools.map((t) => <Tag key={t}>{t}</Tag>)}</div>
           </div>
+          {p.source && (
+            <a href={p.source.url} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-surface p-4 text-sm font-medium text-accent transition hover:border-accent">
+              {p.source.label} ↗
+            </a>
+          )}
           <Link href={`/work/${next.slug}`} className="block rounded-2xl border border-border bg-surface p-4 transition hover:border-accent">
             <p className="text-xs text-muted-foreground">Next project</p>
             <p className="font-semibold">{next.title} →</p>

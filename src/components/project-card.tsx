@@ -9,8 +9,12 @@ export function ProjectCard({ project }: { project: Project }) {
       href={`/work/${project.slug}`}
       className="group block overflow-hidden rounded-2xl border border-border bg-surface transition hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/5"
     >
-      <div className={cn("relative aspect-[16/10] bg-gradient-to-br", project.gradient)}>
-        <div className="bg-grid absolute inset-0 opacity-40" />
+      <div className={cn("relative aspect-[16/10] overflow-hidden bg-gradient-to-br", project.gradient)}>
+        {project.image ? (
+          <img src={project.image} alt="" className="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-105" />
+        ) : (
+          <div className="bg-grid absolute inset-0 opacity-40" />
+        )}
         <span className="absolute left-4 top-4 rounded-full bg-black/25 px-3 py-1 text-xs font-medium text-white backdrop-blur">
           {project.category}
         </span>

@@ -1,44 +1,48 @@
 /**
  * Single source of truth for every page on the site.
  *
- * Everything marked `SAMPLE` is placeholder copy: LinkedIn could not be read
- * from the build environment. Replace it with the data from the LinkedIn
- * "Save to PDF" export or the full data export (Settings → Data privacy →
- * Get a copy of your data), and drop the profile photo at
- * /public/images/profile.jpg.
+ * Verified from public sources (Nov 2026):
+ *  - LinkedIn title: "Nikhila Mamanduri, MHA, CAPM - Medi-Weightloss®"
+ *  - Medi-Weightloss Thousand Oaks staff page: "Nikhila Mamanduri — Office Staff" (+ photo)
+ *  - ZoomInfo: Lead Admin Coordinator, Tufts Medicine (may be outdated)
+ *  - University of New Haven Charger Blog (Feb 24, 2023): "Nikhila Mamanduri ’24 MHA,
+ *    director of community relations, SOHA"
+ *
+ * Anything marked `SAMPLE` is still placeholder copy: the full LinkedIn profile
+ * (about, dates, skills, recommendations) is behind LinkedIn's login wall.
+ * Fill it in from the LinkedIn "Save to PDF" export.
  */
 
 export const profile = {
   name: "Nikhila Mamanduri",
+  credentials: "MHA, CAPM",
   shortName: "Nikki",
   initials: "NM",
-  // SAMPLE — replace with the LinkedIn headline
-  headline: "Professional headline from LinkedIn",
-  // SAMPLE — one-line value proposition for the hero
+  headline: "Healthcare Administration Professional",
   tagline:
-    "I help teams turn ideas into results. Let's talk about what you're building.",
-  location: "Location",
-  timezone: "Asia/Kolkata",
-  email: "hello@example.com", // SAMPLE
+    "Healthcare administrator with a Master of Healthcare Administration and a CAPM certification — focused on smooth operations, great patient experiences and well-run projects.",
+  location: "Thousand Oaks, California",
+  timezone: "America/Los_Angeles",
+  email: "hello@example.com", // SAMPLE — replace with a real contact email
   linkedin: "https://www.linkedin.com/in/nikki-mamanduri",
-  whatsapp: "", // e.g. "919999999999" — leave empty to hide the button
-  photo: "/images/profile.svg", // replace with /images/profile.jpg
+  whatsapp: "", // e.g. "1XXXXXXXXXX" — leave empty to hide the button
+  photo: "/images/profile.jpg",
   resumePdf: "", // e.g. "/Nikhila-Mamanduri-Resume.pdf"
-  // SAMPLE — LinkedIn "About" section, one paragraph per entry
+  // SAMPLE — written from public facts; replace with the LinkedIn "About" section
   about: [
-    "This is where the LinkedIn About section goes. Tell visitors who you are, what you care about, and the kind of problems you love to solve.",
-    "Use a second paragraph for how you work: your approach, the teams you've been part of, and what people can expect when they work with you.",
+    "I'm Nikhila (Nikki) Mamanduri, a healthcare administration professional. I earned my Master of Healthcare Administration at the University of New Haven and hold the Certified Associate in Project Management (CAPM) credential.",
+    "I've worked on the administrative side of healthcare at Tufts Medicine and today support patients and providers at Medi-Weightloss in Thousand Oaks, California. During my MHA I served as director of community relations for the University's Society of Healthcare Administration (SOHA), connecting students with alumni, faculty and industry leaders.",
   ],
   stats: [
-    { value: 5, suffix: "+", label: "Years of experience" }, // SAMPLE
-    { value: 20, suffix: "+", label: "Projects delivered" }, // SAMPLE
-    { value: 10, suffix: "+", label: "Happy clients" }, // SAMPLE
-    { value: 3, suffix: "", label: "Certifications" }, // SAMPLE
+    { value: "MHA", label: "Master of Healthcare Administration" },
+    { value: "CAPM", label: "Project Management Institute" },
+    { value: "’24", label: "University of New Haven" },
+    { value: "2", label: "Healthcare organizations" },
   ],
   values: [
-    { title: "Clarity first", text: "Simple plans, clear updates, no surprises." },
-    { title: "Outcome driven", text: "Every task ties back to a measurable result." },
-    { title: "Kind & candid", text: "Honest feedback delivered with care." },
+    { title: "Patient-first", text: "Every process should make care easier for patients and staff." },
+    { title: "Organised delivery", text: "Clear plans, timelines and follow-through — the CAPM way." },
+    { title: "Community builder", text: "Bringing people together, from SOHA events to clinic teams." },
   ],
 };
 
@@ -54,75 +58,71 @@ export type Experience = {
   skills: string[];
 };
 
-// SAMPLE — replace with every LinkedIn Experience entry, newest first
+// Roles verified from public sources; dates and highlights are SAMPLE until the LinkedIn export is added.
 export const experience: Experience[] = [
   {
-    role: "Current Role",
-    company: "Company Name",
-    type: "Full-time",
-    start: "2023",
+    role: "Office Staff",
+    company: "Medi-Weightloss®",
+    start: "SAMPLE",
     end: "Present",
-    location: "City, Country",
-    summary: "One-line description of the role and team.",
+    location: "Thousand Oaks, CA",
+    summary: "Front-office and administrative support for a physician-supervised weight loss clinic.",
     highlights: [
-      "Key achievement with a number (e.g. improved X by 30%).",
-      "Project you led and its impact.",
-      "Something you built, launched or improved.",
+      "SAMPLE — patient scheduling, intake and front-desk operations.",
+      "SAMPLE — supporting the clinical team across weight loss, GLP-1 and wellness programs.",
     ],
-    skills: ["Skill A", "Skill B", "Skill C"],
+    skills: ["Patient experience", "Clinic operations", "Scheduling"],
   },
   {
-    role: "Previous Role",
-    company: "Company Name",
-    type: "Full-time",
-    start: "2021",
-    end: "2023",
-    location: "City, Country",
-    summary: "One-line description of the role and team.",
-    highlights: [
-      "Key achievement with a number.",
-      "Cross-team initiative you were part of.",
-    ],
-    skills: ["Skill B", "Skill D"],
+    role: "Lead Admin Coordinator",
+    company: "Tufts Medicine",
+    start: "SAMPLE",
+    end: "SAMPLE",
+    location: "Massachusetts",
+    summary: "Administrative coordination within an academic health system.",
+    highlights: ["SAMPLE — add key achievements from LinkedIn."],
+    skills: ["Healthcare administration", "Coordination"],
   },
   {
-    role: "First Role / Internship",
-    company: "Company Name",
-    type: "Internship",
-    start: "2020",
-    end: "2021",
-    location: "City, Country",
-    summary: "Where it all started.",
-    highlights: ["What you learned and delivered."],
-    skills: ["Skill A"],
+    role: "Director of Community Relations",
+    company: "Society of Healthcare Administration (SOHA), University of New Haven",
+    type: "Student leadership",
+    start: "2023",
+    end: "2024",
+    location: "West Haven, CT",
+    summary: "Led community relations for the University's SOHA chapter during the MHA program.",
+    highlights: [
+      "Wrote and published the Charger Blog story on SOHA's Spring 2023 semester kickoff event.",
+      "Promoted the eight-week MHA Career Mentoring Sessions run with faculty, Advisory Board members and alumni.",
+      "Connected MHA students with CTAHE and ACHE networking opportunities.",
+    ],
+    skills: ["Event planning", "Communications", "Networking"],
   },
 ];
 
-// SAMPLE — replace with LinkedIn Education
 export const education = [
   {
-    school: "University Name",
-    degree: "Degree, Field of study",
-    start: "2016",
-    end: "2020",
-    note: "Activities, societies or honours.",
+    school: "University of New Haven",
+    degree: "Master of Healthcare Administration (MHA)",
+    start: "",
+    end: "2024",
+    note: "Director of community relations, Society of Healthcare Administration (SOHA).",
   },
+  // SAMPLE — add the undergraduate degree from LinkedIn
 ];
 
-// SAMPLE — replace with LinkedIn Skills (grouped)
+// SAMPLE — inferred from roles; replace with LinkedIn Skills
 export const skillGroups = [
-  { title: "Core skills", items: ["Skill A", "Skill B", "Skill C", "Skill D"] },
-  { title: "Tools", items: ["Tool A", "Tool B", "Tool C"] },
-  { title: "Soft skills", items: ["Communication", "Leadership", "Problem solving"] },
+  { title: "Healthcare", items: ["Healthcare administration", "Patient experience", "Clinic operations", "Healthcare quality"] },
+  { title: "Project management", items: ["CAPM", "Planning & scheduling", "Stakeholder communication", "Process improvement"] },
+  { title: "People", items: ["Community relations", "Event planning", "Team coordination"] },
 ];
 
-// SAMPLE — replace with LinkedIn Licenses & certifications
 export const certifications = [
-  { name: "Certification Name", issuer: "Issuer", year: "2024", url: "" },
-  { name: "Certification Name", issuer: "Issuer", year: "2023", url: "" },
+  { name: "Certified Associate in Project Management (CAPM)®", issuer: "Project Management Institute", year: "", url: "" },
 ];
 
-export const languages = ["English", "Telugu", "Hindi"]; // SAMPLE
+export const languages = ["English"]; // SAMPLE — add other languages from LinkedIn
 
 export type Service = {
   slug: string;
@@ -133,30 +133,30 @@ export type Service = {
   sessionId: string;
 };
 
-// SAMPLE — what Nikki offers; each card links into the booking flow
+// SAMPLE — what Nikki offers; confirm with her
 export const services: Service[] = [
   {
-    slug: "consulting",
-    title: "1:1 Consulting",
-    summary: "A focused session to unblock a problem, review a plan or get a second opinion.",
-    deliverables: ["60-minute video call", "Written summary & next steps", "Follow-up by email"],
+    slug: "operations",
+    title: "Clinic Operations Support",
+    summary: "Help small practices tighten front-office workflows, scheduling and patient intake.",
+    deliverables: ["Workflow review", "Practical recommendations", "Follow-up check-in"],
     price: "On request",
     sessionId: "deep-dive",
   },
   {
     slug: "projects",
-    title: "Project Engagements",
-    summary: "Hands-on help to plan, build and ship a project end to end.",
-    deliverables: ["Scoping workshop", "Weekly progress check-ins", "Final handover"],
+    title: "Healthcare Project Coordination",
+    summary: "CAPM-grounded planning, timelines and stakeholder updates for healthcare initiatives.",
+    deliverables: ["Project plan & timeline", "Status reporting", "Risk & issue tracking"],
     price: "Custom quote",
     sessionId: "intro",
   },
   {
     slug: "mentoring",
-    title: "Mentoring",
-    summary: "Career guidance, interview prep and portfolio reviews for people starting out.",
-    deliverables: ["Monthly sessions", "Resume & LinkedIn review", "Goal tracking"],
-    price: "On request",
+    title: "MHA & Career Mentoring",
+    summary: "Guidance for students and early-career professionals entering healthcare administration.",
+    deliverables: ["1:1 sessions", "Resume & LinkedIn review", "Networking tips"],
+    price: "Free",
     sessionId: "consult",
   },
 ];
@@ -171,8 +171,8 @@ export type SessionType = {
 
 export const sessionTypes: SessionType[] = [
   { id: "intro", title: "Intro call", minutes: 15, description: "Say hello and see if we're a fit.", price: "Free" },
-  { id: "consult", title: "Consultation", minutes: 30, description: "Talk through a specific question or idea.", price: "Free" },
-  { id: "deep-dive", title: "Deep dive", minutes: 60, description: "A working session on your project or career.", price: "On request" },
+  { id: "consult", title: "Mentoring chat", minutes: 30, description: "Career questions, MHA advice or a resume review.", price: "Free" },
+  { id: "deep-dive", title: "Working session", minutes: 60, description: "A focused session on your clinic or project.", price: "On request" },
 ];
 
 /** Weekly availability in the profile timezone (24h clock). */
@@ -195,83 +195,96 @@ export type Project = {
   metrics: { value: string; label: string }[];
   tools: string[];
   gradient: string;
+  image?: string;
+  source?: { label: string; url: string };
 };
 
-// SAMPLE — replace with LinkedIn Projects / Featured
 export const projects: Project[] = [
   {
-    slug: "project-one",
-    title: "Project One",
-    category: "Strategy",
-    year: "2025",
-    summary: "Short description of the project and why it mattered.",
-    problem: "What problem did the team or client have?",
-    approach: "What did you do, and how?",
-    result: "What changed because of it?",
+    slug: "soha-spring-kickoff",
+    title: "SOHA Spring Semester Kickoff",
+    category: "Community",
+    year: "2023",
+    summary: "A welcome-back networking event for University of New Haven MHA students, run by the Society of Healthcare Administration.",
+    problem: "MHA students needed a way to reconnect after the break and meet the people who could shape their careers — faculty, alumni and industry leaders.",
+    approach:
+      "SOHA brought together the MHA program director, a Connecticut Association of Healthcare Executives (CTAHE) speaker, capstone faculty, an alumnus from Stamford Health and current students for talks on internships, networking and the job market. As director of community relations, Nikhila covered the event for the Charger Blog and promoted the MHA Career Mentoring Sessions.",
+    result: "Students left with new contacts, a clearer view of CTAHE/ACHE opportunities and an invitation to the eight-week MHA Career Mentoring program.",
     metrics: [
-      { value: "30%", label: "Metric improved" },
-      { value: "3 mo", label: "Delivered in" },
+      { value: "5", label: "Guest speakers" },
+      { value: "8 wk", label: "Mentoring program promoted" },
     ],
-    tools: ["Tool A", "Tool B"],
+    tools: ["Event planning", "Communications", "Networking"],
     gradient: "from-indigo-500 via-violet-500 to-fuchsia-500",
+    image: "/images/soha-kickoff.jpg",
+    source: { label: "Read the Charger Blog story", url: "https://www.newhaven.edu/news/blog/2023/mha-event.php" },
   },
   {
-    slug: "project-two",
-    title: "Project Two",
-    category: "Delivery",
-    year: "2024",
-    summary: "Short description of the project and why it mattered.",
-    problem: "What problem did the team or client have?",
-    approach: "What did you do, and how?",
-    result: "What changed because of it?",
-    metrics: [
-      { value: "2x", label: "Faster" },
-      { value: "100+", label: "Users" },
-    ],
-    tools: ["Tool C"],
+    slug: "clinic-operations",
+    title: "Clinic Front-Office Operations",
+    category: "Operations",
+    year: "SAMPLE",
+    summary: "SAMPLE — a workflow or patient-experience improvement from Medi-Weightloss or Tufts Medicine.",
+    problem: "SAMPLE — what wasn't working?",
+    approach: "SAMPLE — what did you change?",
+    result: "SAMPLE — what improved?",
+    metrics: [{ value: "—", label: "Add a metric" }],
+    tools: ["Scheduling", "EHR"],
     gradient: "from-sky-500 via-cyan-500 to-emerald-500",
   },
   {
-    slug: "project-three",
-    title: "Project Three",
+    slug: "mha-capstone",
+    title: "MHA Capstone Project",
     category: "Research",
-    year: "2023",
-    summary: "Short description of the project and why it mattered.",
-    problem: "What problem did the team or client have?",
-    approach: "What did you do, and how?",
-    result: "What changed because of it?",
-    metrics: [{ value: "5", label: "Teams involved" }],
-    tools: ["Tool A", "Tool D"],
+    year: "2024",
+    summary: "SAMPLE — the capstone project from the University of New Haven MHA program.",
+    problem: "SAMPLE — the healthcare problem the capstone addressed.",
+    approach: "SAMPLE — method and partners.",
+    result: "SAMPLE — findings and recommendations.",
+    metrics: [{ value: "—", label: "Add a metric" }],
+    tools: ["Research", "Data analysis"],
     gradient: "from-amber-500 via-orange-500 to-rose-500",
   },
 ];
 
-// SAMPLE — replace with LinkedIn Recommendations
+// SAMPLE — replace with LinkedIn Recommendations (shown with a "sample" note until then)
+export const testimonialsAreSamples = true;
 export const testimonials = [
   { quote: "Paste a LinkedIn recommendation here. Keep it to two or three sentences.", name: "Colleague Name", role: "Title, Company" },
   { quote: "Another recommendation that shows how Nikki works with people.", name: "Manager Name", role: "Title, Company" },
-  { quote: "A client quote about results delivered.", name: "Client Name", role: "Title, Company" },
-  { quote: "A mentee or teammate on what they learned.", name: "Teammate Name", role: "Title, Company" },
+  { quote: "A quote from a SOHA peer or professor.", name: "Name", role: "University of New Haven" },
+  { quote: "A teammate on what it's like to work with Nikki.", name: "Teammate Name", role: "Title, Company" },
 ];
 
-export type Post = { slug: string; title: string; date: string; excerpt: string; body: string[] };
+export type Post = {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  body: string[];
+  externalUrl?: string;
+  publication?: string;
+};
 
-// SAMPLE — LinkedIn posts / articles reposted as long-form
 export const posts: Post[] = [
   {
-    slug: "hello-world",
-    title: "Why I built this site",
-    date: "2026-11-09",
-    excerpt: "A short note on what you'll find here and how to work with me.",
+    slug: "soha-spring-kickoff",
+    title: "Spring Semester Kickoff Event Fosters Community Among Master of Healthcare Administration Students",
+    date: "2023-02-24",
+    publication: "The Charger Blog, University of New Haven",
+    externalUrl: "https://www.newhaven.edu/news/blog/2023/mha-event.php",
+    excerpt:
+      "Candidates in the Master of Healthcare Administration program came together for the welcome back event organized by the University's chapter of the Society of Healthcare Administration (SOHA).",
     body: [
-      "Replace this with a real article or a LinkedIn post expanded into long form.",
-      "Each post gets its own page, so it can be shared on LinkedIn with a proper preview.",
+      "I wrote this piece for the University of New Haven's Charger Blog as director of community relations for the Society of Healthcare Administration (SOHA).",
+      "It covers SOHA's spring welcome-back event, where MHA candidates networked with the program director, a Connecticut Association of Healthcare Executives (CTAHE) speaker, capstone faculty, alumni and classmates, and learned about internships, CTAHE/ACHE congresses and the job market for MHA graduates.",
+      "The article also introduced the MHA Career Mentoring Sessions — an eight-week program run by MHA faculty, Advisory Board members and alumni.",
     ],
   },
 ];
 
 export const faqs = [
   { q: "How do I book a session?", a: "Pick a session on the Book page, choose a time that suits you, and you'll get a confirmation by email." },
-  { q: "Which timezone are slots in?", a: "Slots are shown in your own timezone automatically." },
-  { q: "Can we meet in person?", a: "Most sessions are on video. Reach out via the contact form for in-person requests." },
+  { q: "Which timezone are slots in?", a: "Slots are shown in your own timezone automatically. Nikki is based in California (Pacific Time)." },
+  { q: "Do you mentor MHA students?", a: "Yes — book a free mentoring chat for MHA, career or resume questions." },
 ];

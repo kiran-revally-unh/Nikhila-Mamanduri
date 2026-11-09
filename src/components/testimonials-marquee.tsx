@@ -1,6 +1,6 @@
 // Testimonials marquee (inspired by 21st.dev "Testimonials with Marquee").
 import { Quote } from "lucide-react";
-import { testimonials } from "@/content/profile";
+import { testimonials, testimonialsAreSamples } from "@/content/profile";
 
 function TestimonialCard({ t }: { t: (typeof testimonials)[number] }) {
   return (
@@ -23,6 +23,8 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[number] }) {
 export function TestimonialsMarquee() {
   const row = [...testimonials, ...testimonials];
   return (
+    <>
+    {testimonialsAreSamples && <SampleNote />}
     <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
       <div className="flex w-max animate-marquee gap-6 hover:[animation-play-state:paused]">
         {row.map((t, i) => (
@@ -30,6 +32,15 @@ export function TestimonialsMarquee() {
         ))}
       </div>
     </div>
+    </>
+  );
+}
+
+export function SampleNote() {
+  return (
+    <p className="mx-auto mb-6 max-w-xl px-4 text-center text-xs text-muted-foreground">
+      Sample quotes — LinkedIn recommendations will appear here.
+    </p>
   );
 }
 

@@ -30,6 +30,7 @@ export default function Home() {
               <ButtonLink href="/work" variant="secondary">View my work</ButtonLink>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
+              <span className="font-medium text-foreground">{profile.name}, {profile.credentials}</span>
               <span className="flex items-center gap-1.5"><MapPin className="size-4" /> {profile.location}</span>
               <a href={profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-foreground">
                 <LinkedInIcon /> LinkedIn
@@ -114,7 +115,7 @@ export default function Home() {
             {posts.slice(0, 3).map((p) => (
               <Link key={p.slug} href={`/blog/${p.slug}`} className="group">
                 <Card className="h-full transition group-hover:border-accent">
-                  <p className="text-xs text-muted-foreground">{new Date(p.date).toLocaleDateString(undefined, { dateStyle: "medium" })}</p>
+                  <p className="text-xs text-muted-foreground">{new Date(p.date).toLocaleDateString(undefined, { dateStyle: "medium", timeZone: "UTC" })}</p>
                   <h3 className="mt-2 font-semibold">{p.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{p.excerpt}</p>
                 </Card>

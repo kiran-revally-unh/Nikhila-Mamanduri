@@ -24,6 +24,9 @@ const personJsonLd = {
   name: profile.name,
   alternateName: profile.shortName,
   jobTitle: profile.headline,
+  honorificSuffix: profile.credentials,
+  alumniOf: { "@type": "CollegeOrUniversity", name: "University of New Haven" },
+  address: { "@type": "PostalAddress", addressLocality: "Thousand Oaks", addressRegion: "CA", addressCountry: "US" },
   url: siteUrl,
   sameAs: [profile.linkedin],
 };
