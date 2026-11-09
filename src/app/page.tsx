@@ -17,6 +17,7 @@ import {
   type WallPhoto,
   type WorkCard,
 } from "@/components/home/bold-home";
+import { FreebieShowcase } from "@/components/freebies/freebie-showcase";
 
 const orgs = ["Medi-Weightloss", "Tufts Medicine", "U.S. Renal Care", "University of New Haven", "Relisys Medical Devices"];
 
@@ -87,6 +88,7 @@ export default function Home() {
       <StatBlocks stats={stats} />
       <CareerLog items={career} />
       <FeaturedWork items={work} />
+      <FreebieShowcase />
       <HonoursRail items={honours} />
       <FreshLinkedIn posts={fresh} profileUrl={profile.linkedin} />
       <PhotoWall photos={wall} />

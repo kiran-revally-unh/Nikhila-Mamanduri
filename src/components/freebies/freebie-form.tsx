@@ -84,7 +84,7 @@ export function FreebieForm({
             <b>{result.title}</b> is downloading. If it didn&apos;t start, use the button below.
           </p>
           <div className="mt-5 flex flex-col gap-2">
-            <a href={result.url} download className="inline-flex items-center justify-center gap-2 rounded-full bg-[#102a33] px-5 py-3 text-sm font-bold text-white dark:bg-[#d8ede7] dark:text-[#102a33]">
+            <a href={result.url} download className={cn("inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold", dark ? "bg-white text-[#102a33]" : "bg-[#102a33] text-white dark:bg-[#d8ede7] dark:text-[#102a33]")}>
               <Download className="size-4" /> Download the PDF
             </a>
             <Link href="/book" className={cn("inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-bold", dark ? "border-white/20" : "border-border")}>

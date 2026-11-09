@@ -349,7 +349,7 @@ export function HonoursRail({ items }: { items: Honour[] }) {
       className="mt-24 bg-[#fbf8f4] dark:bg-[#0f2128] sm:mt-32"
       style={{ height: pinned ? `calc(100svh + ${distance}px)` : undefined }}
     >
-      <div className={pinned ? "sticky top-0 flex h-svh flex-col justify-center overflow-hidden" : "py-14"}>
+      <div className={pinned ? "sticky top-0 flex h-svh flex-col justify-center overflow-clip" : "py-14"}>
         <p className="px-5 font-mono text-[11px] tracking-[0.3em] text-coral sm:px-8">CHAPTER — HONOURS</p>
         <motion.div
           ref={track}
@@ -626,7 +626,7 @@ export function PhotoWall({ photos }: { photos: WallPhoto[] }) {
           Full gallery <ArrowUpRight className="size-4" />
         </Link>
       </div>
-      <div ref={ref} className="mx-auto mt-8 grid max-h-[860px] max-w-5xl grid-cols-3 gap-2.5 overflow-hidden px-2.5 [mask-image:linear-gradient(to_bottom,black_80%,transparent)] sm:max-h-[1100px] sm:gap-4 sm:px-8">
+      <div ref={ref} className="mx-auto mt-8 grid max-h-[860px] max-w-5xl grid-cols-3 gap-2.5 overflow-clip px-2.5 [mask-image:linear-gradient(to_bottom,black_80%,transparent)] sm:max-h-[1100px] sm:gap-4 sm:px-8">
         <WallColumn photos={cols[0]} y={a} offset="" />
         <WallColumn photos={cols[1]} y={b} offset="-mt-10" />
         <WallColumn photos={cols[2]} y={c} offset="mt-6" />
